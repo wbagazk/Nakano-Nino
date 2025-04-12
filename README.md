@@ -12,7 +12,9 @@
 ---
 
 <div align="center">
-UPDATE DILAKUKAN BERTAHAP
+  <a href="#️🛠️-update-source-code" style="text-decoration: none; color: inherit;">
+    <strong>UPDATE DILAKUKAN BERTAHAP</strong>
+  </a>
 </div>
 
 ---
@@ -36,6 +38,16 @@ npm start
 
 
 ---
+
+
+<details>
+<summary><b>🛠️ UPDATE SOURCE CODE</b></summary>
+
+> **12 April 2025**
+- Nakano Nino by WBK Launch.
+
+</details>
+
 
 <div align="center">
   <h2>📃 For Register Bot 📃</h2>
