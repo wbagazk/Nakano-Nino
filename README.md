@@ -19,6 +19,9 @@
 
 ---
 
+<div align="center">
+  <img src="https://files.catbox.moe/21e5n2.png" alt="Showcase Image" />
+</div>
 
 ## 🚀 Getting Started
 
