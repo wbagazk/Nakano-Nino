@@ -42,7 +42,6 @@ npm start
 
 ---
 
-
 <details>
 <summary><b>🛠️ UPDATE SOURCE CODE</b></summary>
 
@@ -50,6 +49,8 @@ npm start
 - Nakano Nino by WBK Launch.
 
 </details>
+
+---
 
 
 <div align="center">
