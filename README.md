@@ -2,7 +2,6 @@
   <img src="https://files.catbox.moe/91k6yl.jpg" alt="Showcase Image" />
 </div>
 
-
 ---
 
 <div align="center">
@@ -13,6 +12,9 @@
 
 ---
 
+<div align="center">
+  <img src="https://files.catbox.moe/21e5n2.png" alt="Showcase Image" />
+</div>
 
 ## 🚀 Getting Started
 
@@ -29,10 +31,6 @@ npm start
 - Requires username, password, key and IP address to connect to this Bot
 - Internet connection
 ```
-
-
----
-
 
 <div align="center">
   <h2>📃 For Register Bot 📃</h2>
