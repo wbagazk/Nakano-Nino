@@ -1,12 +1,6 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=0:00c9ff,150:00c9ff&text=NAKANO%20NINO&fontColor=fff&fontAlign=50&fontAlignY=33&desc=~Anata%20no%20koto%20o%20motto%20shiritai…%20|%20Bot%20WhatsApp%20by%20WBK&descSize=24&descAlignY=55&reversal=false&animation=scaleIn&fontSize=60"/>
+  <img src="https://files.catbox.moe/91k6yl.jpg" alt="Showcase Image" />
 </div>
-
-<p align="center">
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=63A4FF&center=true&vCenter=true&width=500&lines=Case+X+Plugin;CommonJS;Neat+Code;Easy+to+Use" alt="Typing SVG" />
-  </a>
-</p>
 
 
 ---
@@ -38,15 +32,6 @@ npm start
 
 
 ---
-
-
-<details>
-<summary><b>🛠️ UPDATE SOURCE CODE</b></summary>
-
-> **12 April 2025**
-- Nakano Nino by WBK Launch.
-
-</details>
 
 
 <div align="center">
