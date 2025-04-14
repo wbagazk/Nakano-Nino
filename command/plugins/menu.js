@@ -1,41 +1,58 @@
 const fs = require('fs')
 const path = require('path')
 const moment = require('moment-timezone')
-const { runtime } = require("../../utils/myfunc")
+const { runtime2 } = require("../../utils/myfunc")
 const pkg = require("../../package.json")
 
-let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) => {
+function getCaseCategories() {
+  const casePath = path.join(__dirname, '../../command/case.js')
+  const content = fs.readFileSync(casePath, 'utf-8')
+  const regex = /case\s+["'`](.*?)["'`]:\s*{[^}]*\/\/\s*Kategory:\s*["'`](.*?)["'`]/g
+  let match, result = {}
+  while ((match = regex.exec(content)) !== null) {
+    const command = match[1]
+    const category = match[2].toLowerCase()
+    if (!result[category]) result[category] = []
+    result[category].push(command)
+  }
+  return result
+}
+
+let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) => {
   const nameBot = global.botName
   const db = global.db
   const user = db.data.users[m.sender]
-	
+
   let header = `☘️ *N A K A N O  N I N O*
 👋 Hai nama saya Nakano Nino saya akan membantu anda dengan fitur yang sediakan!
 ─────────────────────────\n\n`
-  
+
   let footer = `📢 *Jika Anda menemui masalah, hubungi developer bot @${global.creator.split("@")[0]}.*
 
-> 💬 *Fitur Limit*: 🥈
-> 💎 *Fitur Premium*: 🥇
-─────────────────────────`;
+> *Fitur Limit*: 🥈
+> *Fitur Premium*: 🥇
+> *Fitur Owner*: 👑
+─────────────────────────`
 
   let menuText = `🎮 *Info Pengguna*:\n` +
     `> - 🧑‍💻 Nama: ${m.pushName}\n` +
     `> - 🏷️ Tag: @${m.sender.split("@")[0]}\n` +
     `> - 🎖️ Status: ${isOwner ? "Developer" : isVip ? 'VIP User' : isPremium ? 'Premium User' : 'Free User'}\n` +
-    `> - ⚖️ Limit: ${isOwner ? "Unlimited" : user.limit}\n\n` +
-    `🤖 *Info Bot*:\n` +
+    `> - ⚖️ Limit: ${isOwner ? "Unlimited" : user.limit}\n` +
+    `> - ⚡ Point: ${isOwner ? "Unlimited" : user.point}\n` +
+  	`> - 💵 Saldo: ${isOwner ? "Unlimited" : user.saldo}`
+    /*`🤖 *Info Bot*:\n` +
     `> - 🏷️ Nama: ${pkg.name}\n` +
     `> - 🔢 Versi: v${pkg.version}\n` +
     `> - 👑 Developer: ${pkg.author}\n` +
-    `> - 🕰️ Waktu Aktif: ${runtime(process.uptime())}\n` +
+    `> - 🕰️ Waktu Aktif: ${runtime2(process.uptime())}\n` +
     `> - 🔑 Prefix: [ ${prefix} ]\n\n` +
     `🕰️ *Info Waktu*:\n` +
     `> - 🕒 ${moment().tz("Asia/Jakarta").format("HH:mm:ss")} WIB\n` +
     `> - 📅 Hari: ${moment().tz("Asia/Jakarta").format("dddd")}\n` +
-    `> - 📅 Tanggal: ${moment().tz("Asia/Jakarta").format("DD MMMM YYYY")}`
-  
-  menuText += `\n─────────────────────────\n`;
+    `> - 📅 Tanggal: ${moment().tz("Asia/Jakarta").format("DD MMMM YYYY")}`*/
+
+  menuText += `\n─────────────────────────\n`
 
   const pluginsDir = path.join(__dirname, '..', 'plugins')
   const getAllPlugins = (dir) => {
@@ -72,6 +89,13 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
     }
   }
 
+  // Masukkan juga dari case.js
+  const caseCategories = getCaseCategories()
+  for (let [cat, commands] of Object.entries(caseCategories)) {
+    if (!tagMap[cat]) tagMap[cat] = []
+    tagMap[cat].push(...commands)
+  }
+
   Object.keys(tagMap).forEach(tag => {
     tagMap[tag] = tagMap[tag].sort((a, b) => a.localeCompare(b))
   })
@@ -81,13 +105,23 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
   const input = args.join(' ').toLowerCase()
 
   if (input === 'all') {
+    await m.react('🫶🏽');
     for (let [tag, helps] of Object.entries(tagMap)) {
       menuText += `\n🧩 *${tag.toUpperCase()}*\n`
       helps.forEach((h, i) => {
-        menuText += `> (${i + 1}) ${prefix + h}\n`
+        let featureText = `> (${i + 1}) ${prefix + h}`
+        const plugin = plugins.find(p => p.help.includes(h))
+        if (plugin && plugin.limit === true) {
+          featureText += ' 🥈'
+        }
+        if (plugin && plugin.owner === true) {
+          featureText += ' 👑'
+        }
+        menuText += featureText + '\n'
       })
-      menuText += `─────────────────────────\n`;
+      menuText += `─────────────────────────\n`
     }
+
     return m.reply({
       document: fs.readFileSync(path.join(__dirname, '../../package.json')),
       mimetype: "application/pdf",
@@ -98,7 +132,7 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
       caption: header + menuText.trim(),
       footer: footer,
       buttons: [
-        { buttonId: '.owner', buttonText: { displayText: 'OWNER' }, type: 1 },
+        { buttonId: '.sc', buttonText: { displayText: 'SC' }, type: 1 },
         { buttonId: '.ping', buttonText: { displayText: 'PING' }, type: 1 },
       ],
       headerType: 1,
@@ -117,11 +151,21 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
       }
     })
   } else if (input && tagMap[input]) {
+    await m.react('🫶🏽');
     menuText += `\n🧩 *${input.toUpperCase()}*\n`
     tagMap[input].forEach((h, i) => {
-      menuText += `> (${i + 1}) ${prefix + h}\n`
-      menuText += `─────────────────────────\n`;
+      let featureText = `> (${i + 1}) ${prefix + h}`
+      const plugin = plugins.find(p => p.help.includes(h))
+      if (plugin && plugin.limit === true) {
+        featureText += ' 🥈'
+      }
+      if (plugin && plugin.owner === true) {
+        featureText += ' 👑'
+      }
+      menuText += featureText + '\n'
     })
+    menuText += `─────────────────────────\n`
+
     return m.reply({
       document: fs.readFileSync(path.join(__dirname, '../../package.json')),
       mimetype: "application/pdf",
@@ -132,7 +176,7 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
       caption: header + menuText.trim(),
       footer: `Ketik *${prefix + command} all* untuk melihat semua fitur.\n\n` + footer,
       buttons: [
-        { buttonId: '.owner', buttonText: { displayText: 'OWNER' }, type: 1 },
+        { buttonId: '.sc', buttonText: { displayText: 'SC' }, type: 1 },
         { buttonId: '.ping', buttonText: { displayText: 'PING' }, type: 1 },
       ],
       headerType: 1,
@@ -154,8 +198,8 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
 
   let teks = menuText + `\n📂 *Daftar Kategori Menu:*\n` +
     Object.keys(tagMap).map((tag, i) => `> (${i + 1}) ${prefix + command} ${tag}`).join('\n')
-  teks += `\n─────────────────────────\n`;
-
+  teks += `\n─────────────────────────\n`
+  await m.react('🫶🏽');
   m.reply({
     document: fs.readFileSync(path.join(__dirname, '../../package.json')),
     mimetype: "application/pdf",
@@ -179,10 +223,10 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
     caption: header + teks,
     footer: `Ketik *${prefix + command} all* untuk melihat semua fitur.\n\n` + footer,
     buttons: [
-      { buttonId: '.owner', buttonText: { displayText: 'OWNER' }, type: 1 },
+      { buttonId: '.sc', buttonText: { displayText: 'SC' }, type: 1 },
       { buttonId: '.ping', buttonText: { displayText: 'PING' }, type: 1 },
       {
-        buttonId: '.allmenu',
+        buttonId: '.menu all',
         buttonText: { displayText: 'ALL MENU' },
         type: 4,
         nativeFlowInfo: {
@@ -194,7 +238,7 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
                 title: `Menu Lengkap, karena Aku Baik Hari Ini! 🌟`,
                 highlight_label: `All`,
                 rows: [{
-                  title: "📚 All Menu",
+                  title: "📚 All",
                   description: `Ugh, kamu tuh… nih, semua menu udah aku siapin disini. Jangan buang waktuku ya! 💢✨`,
                   id: `${prefix + command} all`,
                 }]
@@ -203,8 +247,8 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
                 title: `Silahkan dipilih menu yang tersedia ya kak. 🤩`,
                 highlight_label: ``,
                 rows: Object.keys(tagMap).map(tag => ({
-                  title: `📂 ${tag.charAt(0).toUpperCase() + tag.slice(1)}`,
-                  description: `Menu berisi fitur ${tag}`,
+                  title: `📂 ${tag.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`,
+                  description: `Menu berisi fitur ${tag.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`,
                   id: `${prefix + command} ${tag}`
                 }))
               }
@@ -217,9 +261,9 @@ let menu = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }) 
   })
 }
 
-menu.help = ['menu']
-menu.tags = ['main']
-menu.command = ['menu']
-menu.register = false
+nakano.help = ['menu']
+nakano.tags = ['main']
+nakano.command = ['menu']
+nakano.register = false
 
-module.exports = menu
+module.exports = nakano

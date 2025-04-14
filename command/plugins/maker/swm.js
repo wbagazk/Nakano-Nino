@@ -32,6 +32,5 @@ let handler = async (m, { command, prefix, args }) => {
 handler.help = ['swm'];
 handler.tags = ['maker'];
 handler.command = ['swmm', 'steal', 'stickerwm', 'take'];
-handler.limit = true;
 
 module.exports = handler;

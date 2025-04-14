@@ -63,6 +63,5 @@ let handler = async (m, { text, prefix, command }) => {
 handler.help = ['yanzgpt'];
 handler.tags = ['ai text'];
 handler.command = ['yanzgpt'];
-handler.limit = true;
 
 module.exports = handler;

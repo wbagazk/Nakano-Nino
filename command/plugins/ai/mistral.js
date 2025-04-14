@@ -51,6 +51,5 @@ let handler = async (m, { text, prefix, command }) => {
 handler.help = ['mistral'];
 handler.tags = ['ai text'];
 handler.command = ['mistral'];
-handler.limit = true;
 
 module.exports = handler;

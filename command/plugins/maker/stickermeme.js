@@ -55,6 +55,5 @@ let nakano = async (m, { wbk, text, prefix, command, mime, quoted }) => {
 nakano.help = ['stickermeme'];
 nakano.tags = ['maker'];
 nakano.command = ['stickermeme', 'stikermeme', 'smeme'];
-nakano.limit = true;
 
 module.exports = nakano;

@@ -107,6 +107,5 @@ Contohnya nih, biar kamu nggak nanya lagi:
 nakano.help = ['logogenerator'];
 nakano.tags = ['maker'];
 nakano.command = ['logogenerator'];
-nakano.limit = true;
 
 module.exports = nakano;

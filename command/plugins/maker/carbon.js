@@ -18,6 +18,5 @@ let handler = async (m, { text, prefix, command }) => {
 handler.help = ['carbon'];
 handler.tags = ['maker'];
 handler.command = ['carbon'];
-handler.limit = true;
 
 module.exports = handler;

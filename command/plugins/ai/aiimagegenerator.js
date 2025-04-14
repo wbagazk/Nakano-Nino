@@ -77,6 +77,5 @@ Hah, akhirnya! Gambar jadi juga! Jangan lupa, kalau kamu mau gambar lain, langsu
 nakano.help = ['aiimagegenerator'];
 nakano.tags = ['ai image'];
 nakano.command = ['aiimagegenerator'];
-nakano.limit = true;
 
 module.exports = nakano;

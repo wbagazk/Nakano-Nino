@@ -61,6 +61,5 @@ let handler = async (m, { text, prefix, command }) => {
 handler.help = ['chatbotai'];
 handler.tags = ['ai text'];
 handler.command = ['chatbotai'];
-handler.limit = true;
 
 module.exports = handler;

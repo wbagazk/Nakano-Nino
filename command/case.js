@@ -1947,13 +1947,20 @@ try {
 switch (command) {
 //=========================================================
 
-//  ADD CASE BISA DI SINI YAAAAAAAAAAAAAAA
-
-
+        
+        
+case "example": {
+    // Kategory: "example"
+    m.reply("yaaa")
+}
+break;
+        
+        
+        
 //=========================================================
 default:
 //=========================================================
-
+        
 if (['bot', 'permisi', 'kak', 'test', 'tes'].some(keyword => budy.startsWith(keyword))) {
     try {
         newReplyBot("Online, Siap Membantu🤖")

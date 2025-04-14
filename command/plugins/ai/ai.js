@@ -1,6 +1,6 @@
 const { fetchJson } = require('../../../utils/myfunc');
 
-let handler = async (m, { text, prefix, command }) => {
+let nakano = async (m, { text, prefix, command }) => {
 	if (!text) return m.reply(`Hello, how can I help you?\nExample: ${prefix + command} Hello`);
     
     let quotedMessage = m.quoted ? m.quoted.text : null;
@@ -33,9 +33,9 @@ let handler = async (m, { text, prefix, command }) => {
     await m.react('✅');
 };
 
-handler.help = ['ai'];
-handler.tags = ['ai text'];
-handler.command = ['ai'];
-handler.limit = true;
+nakano.help = ['ai'];
+nakano.tags = ['ai text'];
+nakano.command = ['ai'];
+nakano.limit = true;
 
-module.exports = handler;
+module.exports = nakano;

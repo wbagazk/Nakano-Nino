@@ -109,6 +109,5 @@ Coba lagi nanti, ya. Aku tetap di sini kok bantuin kamu 🌸`);
 nakano.help = ['magichour'];
 nakano.tags = ['ai image'];
 nakano.command = ['magichour'];
-nakano.limit = true;
 
 module.exports = nakano;
