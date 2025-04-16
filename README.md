@@ -5,20 +5,14 @@
 ---
 
 <div align="center">
-  <a href="#️🛠️-update-source-code" style="text-decoration: none; color: inherit;">
-    <strong>UPDATE DILAKUKAN BERTAHAP</strong>
-  </a>
+  <h2>UPDATE DILAKUKAN BERTAHAP</h2>
 </div>
 
 ---
 
-<div align="center">
-  <img src="https://files.catbox.moe/21e5n2.png" alt="Showcase Image" />
-</div>
-
 ## 🚀 Getting Started
 
-```bash
+```
 git clone https://github.com/wbagazk/Nakano-Nino.git
 cd Nakano-Nino
 npm install
@@ -31,6 +25,8 @@ npm start
 - Requires username, password, key and IP address to connect to this Bot
 - Internet connection
 ```
+
+---
 
 <div align="center">
   <h2>📃 For Register Bot 📃</h2>

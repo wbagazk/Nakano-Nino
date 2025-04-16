@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
-    "@fizzxydev/baileys-pro": "latest",
+    "baileys-pro": "latest",
     "@hapi/boom": "^10.0.1",
     "@octokit/rest": "^21.1.1",
     "@twemoji/parser": "^15.1.1",

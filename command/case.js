@@ -1,6 +1,6 @@
 //=========================================================
 // BAILEYS
-const { downloadContentFromMessage, BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, InteractiveMessage, getContentType, delay, getDevice, getBinaryNodeChild, getBinaryNodeChildren, getBinaryNodeChildString, baileys, isLidUser, S_WHATSAPP_NET } = require('@fizzxydev/baileys-pro');
+const { downloadContentFromMessage, BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, InteractiveMessage, getContentType, delay, getDevice, getBinaryNodeChild, getBinaryNodeChildren, getBinaryNodeChildString, baileys, isLidUser, S_WHATSAPP_NET } = require('baileys-pro');
 //=========================================================
 
 //=========================================================

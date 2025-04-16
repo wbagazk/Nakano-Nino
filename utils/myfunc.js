@@ -5,7 +5,7 @@ const {
 	generateWAMessage, 
 	areJidsSameUser, 
 	getContentType 
-} = require('@fizzxydev/baileys-pro');
+} = require('baileys-pro');
 const axios = require('axios');
 const moment = require('moment-timezone');
 const { sizeFormatter } = require('human-readable');
