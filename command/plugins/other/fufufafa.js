@@ -49,6 +49,6 @@ let nakano = async (m, { text }) => {
 
 nakano.help = ['fufufafa'];
 nakano.tags = ['other'];
-nakano.command = /^fufufafa/i;
+nakano.command = ['fufufafa'];
 
 module.exports = nakano;

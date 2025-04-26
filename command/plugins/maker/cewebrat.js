@@ -105,7 +105,7 @@ async function cewebrat(teks) {
     }
 }
 
-let handler = async (m, { text, command, prefix }) => {
+let nakano = async (m, { text, command, prefix }) => {
     if (!text) return m.reply(`Contoh: ${prefix + command} Hai kak`);
 
     await m.react('⏱️');
@@ -120,9 +120,9 @@ let handler = async (m, { text, command, prefix }) => {
     await m.react('✅');
 };
 
-handler.help = ['cewebrat'];
-handler.tags = ['maker'];
-handler.command = ['cewebrat', 'cwebrat', 'cwkbratt', 'cewekbrat'];
-handler.limit = true;
+nakano.help = ['cewebrat'];
+nakano.tags = ['maker'];
+nakano.command = ['cewebrat', 'cwebrat', 'cwkbratt', 'cewekbrat'];
+nakano.limit = true;
 
-module.exports = handler;
+module.exports = nakano;

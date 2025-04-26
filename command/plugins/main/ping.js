@@ -2,7 +2,7 @@ const os = require('os');
 const nou = require('node-os-utils');
 const { formatp, runtime } = require('../../../utils/myfunc')
 
-let handler = async (m, { wbk }) => {
+let nakano = async (m, { wbk }) => {
     const used = process.memoryUsage();
     const cpus = os.cpus().map(cpu => {
         cpu.total = Object.keys(cpu.times).reduce((last, type) => last + cpu.times[type], 0);
@@ -67,8 +67,8 @@ Tetap semangat ya kak! WBK selalu siap membantu 🥰
     await m.react('💵');
 };
 
-handler.help = ['ping'];
-handler.tags = ['main'];
-handler.command = ['ping', 'speed'];
+nakano.help = ['ping'];
+nakano.tags = ['main'];
+nakano.command = ['ping', 'speed'];
 
-module.exports = handler;
+module.exports = nakano;

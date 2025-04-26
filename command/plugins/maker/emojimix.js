@@ -2,7 +2,7 @@ const axios = require("axios");
 const { writeExif } = require("../../../utils/exif");
 const { getBuffer } = require("../../../utils/myfunc");
 
-let handler = async (m, { text, prefix, command }) => {
+let nakano = async (m, { text, prefix, command }) => {
     let [emoji1, emoji2] = text.split('+');
     if (!emoji1 || !emoji2) return m.reply(`Contoh: ${prefix + command} 😂+😭`);
     
@@ -22,9 +22,9 @@ let handler = async (m, { text, prefix, command }) => {
     await m.react('✅');
 };
 
-handler.help = ['emojimix'];
-handler.tags = ['maker'];
-handler.command = ['emojimix'];
-handler.limit = true;
+nakano.help = ['emojimix'];
+nakano.tags = ['maker'];
+nakano.command = ['emojimix'];
+nakano.limit = true;
 
-module.exports = handler;
+module.exports = nakano;

@@ -48,20 +48,14 @@ async function tiktokDownloaderVideo(url) {
 					hd: 1
 				}
 			})).data.data
-			if (!res.size) {
-				res.images.map(v => {
-					data.push({ type: 'photo', url: v })
-				})
+			if (Array.isArray(res?.images) && res.images.length > 0) {
+                res.images.map(v => {
+                    data.push({ type: 'photo', url: v });
+                });
 			} else {
 				data.push({
-					type: 'watermark',
-					url: 'https://www.tikwm.com' + res.wmplay,
-				}, {
 					type: 'nowatermark',
 					url: 'https://www.tikwm.com' + res.play,
-				}, {
-					type: 'nowatermark_hd',
-					url: 'https://www.tikwm.com' + res.hdplay
 				})
 			}
 			let json = {
@@ -171,13 +165,12 @@ ${anu.title || '-'}
     ${m.isGroup ? anu.data.length > 1 ? "\n📥 _Sisa foto dikirim ke private chat_\n" : "\n" : "\n"}`,
                 });
             } else {
-                await m.rply({
+                await m.reply({
                     image: { url: imgs.url },
-                    caption: "done"
+                    caption: "Semua foto telah dikirim."
                 })
             }
             item += 1;
-            await sleep(2000);
         }
     }
     await m.reply({

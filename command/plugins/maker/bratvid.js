@@ -4,7 +4,7 @@ const path = require("path");
 const { execSync } = require("child_process");
 const { videoToWebp, writeExif } = require("../../../utils/exif"); 
 
-let handler = async (m, { text, wbk }) => {
+let nakano = async (m, { text, wbk }) => {
     if (!text) return m.reply("Masukkan teks untuk brat-nya, maksimal 10 kata ya! 😤");
 
     const words = text.trim().split(/\s+/);
@@ -79,9 +79,9 @@ let handler = async (m, { text, wbk }) => {
     if (fs.existsSync(outputVideoPath)) fs.unlinkSync(outputVideoPath);
 };
 
-handler.help = ['bratvid'];
-handler.tags = ['maker'];
-handler.command = ['bratvid'];
-handler.limit = true;
+nakano.help = ['bratvid'];
+nakano.tags = ['maker'];
+nakano.command = ['bratvid'];
+nakano.limit = true;
 
-module.exports = handler;
+module.exports = nakano;

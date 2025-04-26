@@ -1,7 +1,7 @@
 const { imageToWebp, videoToWebp, gifToWebp, writeExif } = require('../../../utils/exif');
 const fs = require('fs');
 
-let handler = async (m, { command, prefix, args }) => {
+let nakano = async (m, { command, prefix, args }) => {
     const q = m.quoted ? m.quoted : m;
     const mime = (q.msg || q).mimetype || '';
     if (!mime) return m.reply(`📌 *Kirim atau balas gambar/video dengan caption ${prefix + command}*\nDurasi video maksimal 9 detik ya!`);
@@ -29,8 +29,8 @@ let handler = async (m, { command, prefix, args }) => {
     await m.react('✅');
 };
 
-handler.help = ['swm'];
-handler.tags = ['maker'];
-handler.command = ['swmm', 'steal', 'stickerwm', 'take'];
+nakano.help = ['swm'];
+nakano.tags = ['maker'];
+nakano.command = ['swmm', 'steal', 'stickerwm', 'take'];
 
-module.exports = handler;
+module.exports = nakano;

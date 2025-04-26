@@ -43,7 +43,7 @@ async function quotedLyo(teks, name, profile, reply) {
 	});
 }
 
-let handler = async (m, { text, command, wbk }) => {
+let nakano = async (m, { text, command, wbk }) => {
     if (!text) return m.reply("😤 *Kamu nggak kasih teks? Ayo cepat! Masukkan teks buat qc-nya!*");
 
     await m.react('⏱️');
@@ -91,9 +91,9 @@ let handler = async (m, { text, command, wbk }) => {
     await m.react('✅');
 };
 
-handler.help = ['qc'];
-handler.tags = ['maker'];
-handler.command = ['qc', 'qcmaker'];
-handler.limit = true;
+nakano.help = ['qc'];
+nakano.tags = ['maker'];
+nakano.command = ['qc', 'qcmaker'];
+nakano.limit = true;
 
-module.exports = handler;
+module.exports = nakano;

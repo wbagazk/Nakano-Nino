@@ -103,6 +103,6 @@ ${kategoriList}
 
 nakano.help = ['totalfitur']
 nakano.tags = ['main']
-nakano.command = ['totalfitur']
+nakano.command = ['totalfitur', 'totalmenu']
 
 module.exports = nakano

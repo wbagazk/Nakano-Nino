@@ -3,7 +3,7 @@ const path = require('path');
 
 const fiturErrorPath = path.join(__dirname, '../../../src/data/function/fiturerror.json');
 
-const handler = async (m, { args, prefix, command }) => {
+const nakano = async (m, { args, prefix, command }) => {
     let data;
     try {
         const fileContent = fs.readFileSync(fiturErrorPath, 'utf-8');
@@ -60,9 +60,9 @@ const handler = async (m, { args, prefix, command }) => {
     m.reply(teks.trim());
 };
 
-handler.help = ['fixplugin'];
-handler.tags = ['owner'];
-handler.command = ['fixplugin'];
-handler.owner = true;
+nakano.help = ['fixplugin'];
+nakano.tags = ['owner'];
+nakano.command = ['fixplugin'];
+nakano.owner = true;
 
-module.exports = handler;
+module.exports = nakano;

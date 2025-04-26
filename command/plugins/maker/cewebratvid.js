@@ -104,11 +104,11 @@ async function cewebrat(teks) {
     return canvas.toBuffer();
 }
 
-let handler = async (m, { text }) => {
-    await m.react('⏱️');  // React with a timer emoji to indicate the process has started
+let nakano = async (m, { text }) => {
+    await m.react('⏱️'); 
 
-    const tempDir = path.join(tmpdir(), 'temp'); // Using tmpdir() for temp directory
-    if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir); // Create the temp folder if it doesn't exist
+    const tempDir = path.join(tmpdir(), 'temp');
+    if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
     const framePaths = [];
 
     const words = text.split(" ");
@@ -152,9 +152,9 @@ let handler = async (m, { text }) => {
     if (fs.existsSync(outputVideoPath)) fs.unlinkSync(outputVideoPath);
 };
 
-handler.help = ['cewebratvid'];
-handler.tags = ['maker'];
-handler.command = ['cewebratvid', 'cwebratvid', 'cwkbrattvid', 'cewekbratvid'];
-handler.limit = true;
+nakano.help = ['cewebratvid'];
+nakano.tags = ['maker'];
+nakano.command = ['cewebratvid', 'cwebratvid', 'cwkbrattvid', 'cewekbratvid'];
+nakano.limit = true;
 
-module.exports = handler;
+module.exports = nakano;

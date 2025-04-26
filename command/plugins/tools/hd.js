@@ -65,6 +65,7 @@ let nakano = async (m, { wbk, text, prefix, command }) => {
         caption: 'Tadaaa~✨ Gambar kamu udah aku buat makin cakep! Jangan lupa bilang makasih yaa 💖'
 	});
     delete wbk.enhancer[m.sender];
+    fs.unlinkSync(media);
 }
 
 nakano.help = ['hd'];

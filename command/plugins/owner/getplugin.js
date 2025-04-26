@@ -56,7 +56,7 @@ const nakano = async (m, { text, prefix, command }) => {
     for (const file of pluginFiles) {
         try {
             const plugin = require(path.join(pluginDir, file))
-            if (plugin.help && plugin.help.includes(pluginName)) {
+            if (plugin.command && plugin.command.includes(pluginName)) {
                 found = path.join(pluginDir, file)
                 break
             }
@@ -85,7 +85,7 @@ const nakano = async (m, { text, prefix, command }) => {
             })
         }
 
-        return m.reply(`❌ Huhh~ Plugin dengan nama help *${pluginName}* nggak ketemu nih, kakak 😢\n\nCoba dicek lagi, mungkin salah ketik ya~ ✍️\n\n${tree}\n📌 *Gunakan:* ${prefix + command} <namaplugin>\n✨ Contoh: ${prefix + command} totalfitur`)
+        return m.reply(`❌ Huhh~ Plugin dengan nama *${pluginName}* nggak ketemu nih, kakak 😢\n\nCoba dicek lagi, mungkin salah ketik ya~ ✍️\n\n${tree}\n📌 *Gunakan:* ${prefix + command} <namaplugin>\n✨ Contoh: ${prefix + command} totalfitur`)
     }
 
     const pluginContent = fs.readFileSync(found, 'utf-8')

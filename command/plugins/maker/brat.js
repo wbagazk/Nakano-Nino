@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { writeExif } = require("../../../utils/exif");
 
-let handler = async (m, { text, command }) => {
+let nakano = async (m, { text, command }) => {
     if (!text) return m.reply("Masukkan teks untuk brat-nya! 😤");
     await m.react('⏱️');
 
@@ -40,9 +40,9 @@ let handler = async (m, { text, command }) => {
     }
 };
 
-handler.help = ['brat'];
-handler.tags = ['maker'];
-handler.command = ['brat', 'anomali'];
-handler.limit = true;
+nakano.help = ['brat'];
+nakano.tags = ['maker'];
+nakano.command = ['brat', 'anomali'];
+nakano.limit = true;
 
-module.exports = handler;
+module.exports = nakano;

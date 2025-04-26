@@ -1,7 +1,7 @@
 const { writeExif } = require("../../../utils/exif");
 const { getBuffer } = require("../../../utils/myfunc");
 
-let handler = async (m, { text, prefix, command }) => {
+let nakano = async (m, { text, prefix, command }) => {
 	if (!text) return m.reply(`Contoh : ${prefix + command} console.log('Hello, world!');`);
     
     await m.react('⏱️');
@@ -15,8 +15,8 @@ let handler = async (m, { text, prefix, command }) => {
     await m.react('✅');
 };
 
-handler.help = ['carbon'];
-handler.tags = ['maker'];
-handler.command = ['carbon'];
+nakano.help = ['carbon'];
+nakano.tags = ['maker'];
+nakano.command = ['carbon'];
 
-module.exports = handler;
+module.exports = nakano;

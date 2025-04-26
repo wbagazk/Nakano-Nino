@@ -1,7 +1,7 @@
 const qs = require("qs");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { litespace } = require('../../../utils/myfunc')
+const { sleep, litespace } = require('../../../utils/myfunc')
 
 const getDownloadLinks = (url) => {
     return new Promise(async (resolve, reject) => {

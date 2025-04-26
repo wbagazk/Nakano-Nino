@@ -1,4 +1,4 @@
-let handler = async (m, { wbk }) => {
+let nakano = async (m, { wbk }) => {
     let caption = `Hay Kak @${m.sender.split("@")[0]} 👋
 
 Source code/script Bot ini gratis, Silahkan akses dan unduh melalui tautan dibawah ini
@@ -29,8 +29,8 @@ Source code/script Bot ini gratis, Silahkan akses dan unduh melalui tautan dibaw
     await m.react('💵');
 };
 
-handler.help = ['sourcecode'];
-handler.tags = ['main'];
-handler.command = ['sourcecode', 'sc', 'script'];
+nakano.help = ['sourcecode'];
+nakano.tags = ['main'];
+nakano.command = ['sourcecode', 'sc', 'script'];
 
-module.exports = handler;
+module.exports = nakano;
