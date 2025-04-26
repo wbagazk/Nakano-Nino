@@ -30,9 +30,9 @@ npm start
 
 <div align="center">
   <h2>📃 For Register Bot 📃</h2>
-  <a href="https://security.wbagazk.my.id/" target="_blank">
-    <img src="https://img.shields.io/badge/Website-Visit-0A66C2?style=for-the-badge&logo=Google-Chrome&logoColor=white" alt="Website Register" />
-  </a>
+  <a href="https://wa.me/6285117114846?text=.nakano%20help" target="_blank">
+     <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp" />
+   </a>
 </div>
 
 
