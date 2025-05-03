@@ -1,0 +1,1199 @@
+{
+  "listerror": [
+    {
+      "error": "writeExif is not defined",
+      "command": "s",
+      "plugin": "plugins/maker/sticker.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-09T14:57:09.211Z"
+    },
+    {
+      "error": "writeExif is not defined",
+      "command": "s",
+      "plugin": "plugins/maker/sticker.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-09T15:08:51.089Z"
+    },
+    {
+      "error": "writeExif is not defined",
+      "command": "s",
+      "plugin": "plugins/maker/sticker.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-09T15:19:42.202Z"
+    },
+    {
+      "error": "writeExif is not defined",
+      "command": "s",
+      "plugin": "plugins/maker/sticker.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-09T15:19:50.006Z"
+    },
+    {
+      "error": "writeExif is not defined",
+      "command": "s",
+      "plugin": "plugins/maker/sticker.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-09T15:20:22.830Z"
+    },
+    {
+      "error": "writeExif is not defined",
+      "command": "s",
+      "plugin": "plugins/maker/sticker.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-09T15:21:18.199Z"
+    },
+    {
+      "error": "Image generation failed",
+      "command": "flatai",
+      "plugin": "plugins/ai/flatai.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T04:56:34.982Z"
+    },
+    {
+      "error": "Image generation failed",
+      "command": "flatai",
+      "plugin": "plugins/ai/flatai.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T04:57:01.457Z"
+    },
+    {
+      "error": "fevent is not defined",
+      "command": "ai4chatimg",
+      "plugin": "plugins/ai/ai4chatimg.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T05:12:11.799Z"
+    },
+    {
+      "error": "Cannot access 'prefix' before initialization",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T06:02:42.527Z"
+    },
+    {
+      "error": "isOwner is not defined",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T06:16:04.331Z"
+    },
+    {
+      "error": "ppg is not defined",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T06:22:46.635Z"
+    },
+    {
+      "error": "pkg.author is not a function",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T06:24:03.923Z"
+    },
+    {
+      "error": "ENOENT: no such file or directory, open '../../package.json'",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T08:01:19.044Z"
+    },
+    {
+      "error": "ENOENT: no such file or directory, scandir '/home/container/command/plugin'",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T09:23:43.905Z"
+    },
+    {
+      "error": "ENOENT: no such file or directory, scandir '/home/container/command/plugin/kategori'",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T09:32:45.276Z"
+    },
+    {
+      "error": "ENOENT: no such file or directory, scandir '/home/container/command/plugin'",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T09:36:19.516Z"
+    },
+    {
+      "error": "generateWAMessageContent is not defined",
+      "command": "logogenerator",
+      "plugin": "plugins/maker/logogenerator.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T13:26:10.567Z"
+    },
+    {
+      "error": "generateWAMessageFromContent is not defined",
+      "command": "logogenerator",
+      "plugin": "plugins/maker/logogenerator.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T13:27:29.927Z"
+    },
+    {
+      "error": "EROFS: read-only file system, mkdir '/temp'",
+      "command": "cewebratvid",
+      "plugin": "plugins/maker/cewebratvid.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T14:15:48.509Z"
+    },
+    {
+      "error": "execSync is not defined",
+      "command": "cewebratvid",
+      "plugin": "plugins/maker/cewebratvid.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T14:26:38.426Z"
+    },
+    {
+      "error": "getBuffer is not defined",
+      "command": "emojimix",
+      "plugin": "plugins/maker/emojimix.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T14:39:33.522Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "emojimix",
+      "plugin": "plugins/maker/emojimix.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T14:41:17.715Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "emojimix",
+      "plugin": "plugins/maker/emojimix.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T14:46:15.591Z"
+    },
+    {
+      "error": "ffmpeg exited with code 1: Error while decoding stream #0:0: Invalid data found when processing input\nCannot determine format of input stream 0:0 after EOF\nError marking filters as finished\nConversion failed!\n",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T15:15:28.112Z"
+    },
+    {
+      "error": "ffmpeg exited with code 1: Error while decoding stream #0:0: Invalid data found when processing input\nCannot determine format of input stream 0:0 after EOF\nError marking filters as finished\nConversion failed!\n",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285117114846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T15:20:30.944Z"
+    },
+    {
+      "error": "ffmpeg exited with code 1: Error while decoding stream #0:0: Invalid data found when processing input\nCannot determine format of input stream 0:0 after EOF\nError marking filters as finished\nConversion failed!\n",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285117114846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T15:21:44.785Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Object",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285117114846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T15:28:16.002Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Object",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285117114846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T15:31:34.647Z"
+    },
+    {
+      "error": "Gagal mendapatkan gambar dari AI.",
+      "command": "texttoimage",
+      "plugin": "plugins/ai/texttoimage.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T16:13:10.996Z"
+    },
+    {
+      "error": "buffer is not defined",
+      "command": "texttoimage",
+      "plugin": "plugins/ai/texttoimage.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T16:14:14.285Z"
+    },
+    {
+      "error": "Gagal mendapatkan gambar dari AI.",
+      "command": "texttoimage",
+      "plugin": "plugins/ai/texttoimage.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T16:18:22.503Z"
+    },
+    {
+      "error": "Gagal mendapatkan gambar dari AI.",
+      "command": "texttoimage",
+      "plugin": "plugins/ai/texttoimage.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T16:21:08.601Z"
+    },
+    {
+      "error": "Gagal mendapatkan gambar dari AI.",
+      "command": "texttoimage",
+      "plugin": "plugins/ai/texttoimage.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T16:21:55.780Z"
+    },
+    {
+      "error": "Gagal mendapatkan gambar dari AI.",
+      "command": "aiimagegenerator",
+      "plugin": "plugins/ai/aiimagegenerator.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T16:36:16.669Z"
+    },
+    {
+      "error": "prompt is not defined",
+      "command": "dimas",
+      "plugin": "plugins/ai/dimas.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T16:54:21.900Z"
+    },
+    {
+      "error": "translate is not defined",
+      "command": "airiple",
+      "plugin": "plugins/ai/airiple.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T23:07:54.925Z"
+    },
+    {
+      "error": "groqapi is not defined",
+      "command": "groq",
+      "plugin": "plugins/ai/groq.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T23:15:12.427Z"
+    },
+    {
+      "error": "GroqAPI.chat is not a function",
+      "command": "groq",
+      "plugin": "plugins/ai/groq.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T23:16:03.494Z"
+    },
+    {
+      "error": "Model \"Llama3-70b-8192\" tidak didukung",
+      "command": "llama3",
+      "plugin": "plugins/ai/llama3.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T23:24:42.517Z"
+    },
+    {
+      "error": "Gagal mengakses API: {\"error\":{\"message\":\"The model `mistral-saba-24b` requires terms acceptance. Please have the org admin accept the terms at https://console.groq.com/playground?model=mistral-saba-24b\",\"type\":\"invalid_request_error\",\"code\":\"model_terms_required\"}}\n",
+      "command": "llama3",
+      "plugin": "plugins/ai/llama3.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T23:25:35.108Z"
+    },
+    {
+      "error": "Model \"whisper-large-v3-turbo\" tidak didukung",
+      "command": "llama3",
+      "plugin": "plugins/ai/llama3.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T23:26:36.478Z"
+    },
+    {
+      "error": "Model \"whisper-large-v3\" tidak didukung",
+      "command": "llama3",
+      "plugin": "plugins/ai/llama3.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-10T23:27:02.508Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'join')",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-11T09:13:33.844Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'join')",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-11T09:35:45.753Z"
+    },
+    {
+      "error": "newReply is not defined",
+      "command": "carbon",
+      "plugin": "plugins/maker/carbon.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-11T09:44:29.762Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'join')",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-11T09:48:03.261Z"
+    },
+    {
+      "error": "runtime is not defined",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T06:18:31.302Z"
+    },
+    {
+      "error": "runtime2 is not a function",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T06:19:37.322Z"
+    },
+    {
+      "error": "globam is not defined",
+      "command": "sc",
+      "plugin": "plugins/main/sourcecode.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:32:49.511Z"
+    },
+    {
+      "error": "os is not defined",
+      "command": "ping",
+      "plugin": "plugins/main/ping.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:43:12.365Z"
+    },
+    {
+      "error": "nou is not defined",
+      "command": "ping",
+      "plugin": "plugins/main/ping.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:44:06.919Z"
+    },
+    {
+      "error": "formatp is not defined",
+      "command": "ping",
+      "plugin": "plugins/main/ping.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:44:41.876Z"
+    },
+    {
+      "error": "runtime is not defined",
+      "command": "ping",
+      "plugin": "plugins/main/ping.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:46:35.897Z"
+    },
+    {
+      "error": "ENOENT: no such file or directory, open '/home/container/command/plugins/case.js'",
+      "command": "totalfitur",
+      "plugin": "plugins/main/totalfitur.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:54:08.425Z"
+    },
+    {
+      "error": "ENOENT: no such file or directory, scandir '/home/container/command/plugins/plugin'",
+      "command": "totalfitur",
+      "plugin": "plugins/main/totalfitur.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:57:49.499Z"
+    },
+    {
+      "error": "ENOENT: no such file or directory, open '/home/container/command/plugins/case.js'",
+      "command": "totalfitur",
+      "plugin": "plugins/main/totalfitur.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T13:58:11.339Z"
+    },
+    {
+      "error": "(intermediate value)(intermediate value)(intermediate value) is not a function",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T16:25:58.141Z"
+    },
+    {
+      "error": "path is not defined",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T16:59:47.600Z"
+    },
+    {
+      "error": "getCaseCategories is not defined",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-12T17:00:59.048Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'size')",
+      "command": "tiktokdl",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287838880856@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-14T06:53:43.686Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'key')",
+      "command": "testes",
+      "plugin": "plugins/owner/fixplugin.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-15T17:52:17.949Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'key')",
+      "command": "testes",
+      "plugin": "plugins/owner/fixplugin.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-15T17:53:04.874Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'key')",
+      "command": "testes",
+      "plugin": "plugins/owner/testes.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-15T17:55:37.286Z"
+    },
+    {
+      "error": "wbk.fetchMessagesFromWA is not a function",
+      "command": "testes",
+      "plugin": "plugins/owner/testes.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-15T17:57:42.898Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'length')",
+      "command": "ig",
+      "plugin": "plugins/downloader/instagram.js",
+      "sender": "6288216399193@s.whatsapp.net",
+      "type": "group chat",
+      "level": "error",
+      "date": "2025-04-16T15:30:06.820Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'size')",
+      "command": "tiktokdl",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287838880856@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-17T05:38:52.297Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:02:51.432Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285121045399@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:08:28.129Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285121045399@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:10:10.115Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285117114846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:14:07.926Z"
+    },
+    {
+      "error": "Upload Error: Request failed with status code 500",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285117114846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:14:33.019Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285121045399@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:17:42.520Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6289516174846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:20:51.903Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6289516174846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:22:56.542Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6289516174846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:24:13.221Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:37:06.065Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-19T02:38:16.007Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'size')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T00:52:36.738Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'size')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T01:34:47.628Z"
+    },
+    {
+      "error": "sleep is not defined",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T01:36:25.996Z"
+    },
+    {
+      "error": "m.rply is not a function",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T01:37:58.746Z"
+    },
+    {
+      "error": "Cannot convert undefined or null to object",
+      "command": "yaleaverpg",
+      "plugin": "plugins/rpg/leaverpg.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T10:12:58.296Z"
+    },
+    {
+      "error": "clockString is not defined",
+      "command": "rampok",
+      "plugin": "plugins/rpg/rampok.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T10:29:32.898Z"
+    },
+    {
+      "error": "Request failed with status code 400",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:24:15.011Z"
+    },
+    {
+      "error": "Request failed with status code 400",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:26:53.917Z"
+    },
+    {
+      "error": "Request failed with status code 400",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:29:48.449Z"
+    },
+    {
+      "error": "Request failed with status code 400",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:32:14.617Z"
+    },
+    {
+      "error": "Upload failed",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:33:06.222Z"
+    },
+    {
+      "error": "Upload failed",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:34:19.604Z"
+    },
+    {
+      "error": "Upload failed",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:35:26.399Z"
+    },
+    {
+      "error": "Upload failed",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:36:49.347Z"
+    },
+    {
+      "error": "Upload failed",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:39:52.593Z"
+    },
+    {
+      "error": "Upload failed",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:41:00.203Z"
+    },
+    {
+      "error": "Upload failed",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:42:20.808Z"
+    },
+    {
+      "error": "Upload failed: File content is required",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:50:52.001Z"
+    },
+    {
+      "error": "Upload failed: File content is required",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:53:17.701Z"
+    },
+    {
+      "error": "Upload failed: File content is required",
+      "command": "tourl",
+      "plugin": "plugins/tools/tourl.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T11:55:26.390Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-20T13:05:08.933Z"
+    },
+    {
+      "error": "Cannot use 'in' operator to search for 'text' in ❓ Perintah tidak valid. Gunakan \"chess help\" untuk melihat bantuan.",
+      "command": "chess",
+      "plugin": "plugins/games/chess.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "group chat",
+      "level": "error",
+      "date": "2025-04-20T15:58:51.175Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285121045399@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-21T06:50:31.002Z"
+    },
+    {
+      "error": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of AxiosError",
+      "command": "smeme",
+      "plugin": "plugins/maker/stickermeme.js",
+      "sender": "6285121045399@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-21T06:50:31.019Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'size')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-21T09:01:46.406Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'images')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-21T12:23:39.053Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'wmplay')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-22T06:35:26.506Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'wmplay')",
+      "command": "tiktokdl",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287838880856@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-22T09:00:22.815Z"
+    },
+    {
+      "error": "timeout of 15000ms exceeded",
+      "command": "bratvid",
+      "plugin": "plugins/maker/bratvid.js",
+      "sender": "6289516339925@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-22T11:00:50.931Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tiktokdl",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287838880856@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-24T11:37:24.331Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tiktokdl",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287838880856@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-24T22:23:02.324Z"
+    },
+    {
+      "error": "clockString is not defined",
+      "command": "daily",
+      "plugin": "plugins/rpg/daily.js",
+      "sender": "6285133800722@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-25T02:05:46.622Z"
+    },
+    {
+      "error": "clockString is not defined",
+      "command": "daily",
+      "plugin": "plugins/rpg/daily.js",
+      "sender": "6288291649859@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-25T03:20:07.064Z"
+    },
+    {
+      "error": "rate-overlimit",
+      "command": "ig",
+      "plugin": "plugins/downloader/instagram.js",
+      "sender": "6285136482130@s.whatsapp.net",
+      "type": "group chat",
+      "level": "error",
+      "date": "2025-04-26T07:33:14.516Z"
+    },
+    {
+      "error": "sleep is not defined",
+      "command": "ig",
+      "plugin": "plugins/downloader/instagram.js",
+      "sender": "6281351310143@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-26T12:34:02.760Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tiktokdl",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-27T09:14:26.241Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6288287513481@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-27T11:25:29.403Z"
+    },
+    {
+      "error": "[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent: [404 Not Found] models/gemini-2.0-flash-exp-image-generation is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+      "command": "hitamkan",
+      "plugin": "plugins/tools/hitamkan.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-27T11:31:10.850Z"
+    },
+    {
+      "error": "[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent: [404 Not Found] models/gemini-2.0-flash-exp-image-generation is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+      "command": "hitamkan",
+      "plugin": "plugins/tools/hitamkan.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-27T11:55:11.433Z"
+    },
+    {
+      "error": "Cannot use 'in' operator to search for '6285183134846@s.whatsapp.net' in undefined",
+      "command": "hitamkan",
+      "plugin": "plugins/tools/hitamkan.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-27T11:59:48.229Z"
+    },
+    {
+      "error": "genAI.listModels is not a function",
+      "command": "hitamkan",
+      "plugin": "plugins/tools/hitamkan.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-27T12:02:41.593Z"
+    },
+    {
+      "error": "[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent: [400 Bad Request] Model does not support the requested response modalities: text,image",
+      "command": "hitamkan",
+      "plugin": "plugins/tools/hitamkan.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-27T12:04:42.643Z"
+    },
+    {
+      "error": "clockString is not defined",
+      "command": "daily",
+      "plugin": "plugins/rpg/daily.js",
+      "sender": "6288291649859@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-28T01:12:11.693Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-28T06:06:55.930Z"
+    },
+    {
+      "error": "Request failed with status code 302",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6288287513481@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-28T10:16:08.226Z"
+    },
+    {
+      "error": "clockString is not defined",
+      "command": "daily",
+      "plugin": "plugins/rpg/daily.js",
+      "sender": "6288291649859@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-29T04:22:36.224Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-30T04:31:22.947Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6289503606018@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-30T05:25:13.899Z"
+    },
+    {
+      "error": "Cannot read properties of undefined (reading 'play')",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6287894353547@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-04-30T08:49:59.586Z"
+    },
+    {
+      "error": "(intermediate value)(intermediate value)(intermediate value) is not a function",
+      "command": "menu",
+      "plugin": "plugins/menu.js",
+      "sender": "6285117164846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-05-01T18:27:02.024Z"
+    },
+    {
+      "error": "generateDailyRewardImage is not defined",
+      "command": "daily",
+      "plugin": "plugins/rpg/daily.js",
+      "sender": "6285183134846@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-05-02T01:22:01.762Z"
+    },
+    {
+      "error": "Request failed with status code 522",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6285713984081@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-05-02T13:59:06.605Z"
+    },
+    {
+      "error": "Request failed with status code 522",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6288287513481@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-05-02T15:03:02.139Z"
+    },
+    {
+      "error": "Request failed with status code 522",
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "sender": "6288287513481@s.whatsapp.net",
+      "type": "private chat",
+      "level": "error",
+      "date": "2025-05-02T15:08:51.721Z"
+    }
+  ],
+  "listcmdblock": [
+    {
+      "command": "tt",
+      "plugin": "plugins/downloader/tiktok.js",
+      "attempt": 3
+    }
+  ]
+}
