@@ -1,4 +1,4 @@
-const COOLDOWN_TIME = 5000       // Cooldown 3 detik
+const COOLDOWN_TIME = 5000       // Cooldown 5 detik
 const MAX_SPAM = 5               // Maksimal 5x spam berturut-turut
 const BAN_TIME = 30000           // Banned selama 30 detik
 const SEND_TIME = 30000          // Reset spam count jika user tidak kirim command selama 30 detik

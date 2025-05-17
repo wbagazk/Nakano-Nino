@@ -1,6 +1,5 @@
 const axios = require("axios");
 const { writeExif } = require("../../../utils/exif");
-const { getBuffer } = require("../../../utils/myfunc");
 
 let nakano = async (m, { text, prefix, command }) => {
     let [emoji1, emoji2] = text.split('+');
@@ -8,7 +7,16 @@ let nakano = async (m, { text, prefix, command }) => {
     
     await m.react('⏱️');
     
-    const buffer = await getBuffer(api.fastrestapis + `/maker/emojimix?emoji1=${emoji1}&emoji2=${emoji2}`);
+    let response = await axios.get(api.fastrestapis + '/maker/emojimix', {
+        params: {
+            emoji1: emoji1,
+            emoji2: emoji2
+        },
+        responseType: 'arraybuffer'
+    });
+    
+    const buffer = Buffer.from(response.data);
+    
     if (!buffer || buffer.length === 0 || buffer.toString().includes('404')) {
         return m.reply('Eh, kok ga bisa ya? Coba emoji yang lain deh... 😤');
     }

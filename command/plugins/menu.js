@@ -23,36 +23,6 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
   const db = global.db
   const user = db.data.users[m.sender]
 
-  let header = `☘️ *N A K A N O  N I N O*
-👋 Hai nama saya Nakano Nino saya akan membantu anda dengan fitur yang sediakan!
-─────────────────────────\n\n`
-
-  let footer = `📢 *Jika Anda menemui masalah, hubungi developer bot @${global.creator.split("@")[0]}.*
-
-> *Fitur Limit*: 🥈
-> *Fitur Premium*: 🥇
-─────────────────────────`
-
-  let menuText = `🎮 *Info Pengguna*:\n` +
-    `> - 🧑‍💻 Nama: ${m.pushName}\n` +
-    `> - 🏷️ Tag: @${m.sender.split("@")[0]}\n` +
-    `> - 🎖️ Status: ${isOwner ? "Developer" : isVip ? 'VIP User' : isPremium ? 'Premium User' : 'Free User'}\n` +
-    `> - ⚖️ Limit: ${isOwner ? "Unlimited" : user.limit}\n` +
-    `> - ⚡ Point: ${isOwner ? "Unlimited" : user.point}\n` +
-  	`> - 💵 Saldo: ${isOwner ? "Unlimited" : user.saldo}\n\n` +
-    `🤖 *Info Bot*:\n` +
-    `> - 🏷️ Nama: ${pkg.name}\n` +
-    `> - 🔢 Versi: v${pkg.version}\n` +
-    `> - 👑 Developer: ${pkg.author}\n` +
-    `> - 🕰️ Waktu Aktif: ${runtime2(process.uptime())}\n` +
-    `> - 🔑 Prefix: [ ${prefix} ]\n\n` +
-    `🕰️ *Info Waktu*:\n` +
-    `> - 🕒 ${moment().tz("Asia/Jakarta").format("HH:mm:ss")} WIB\n` +
-    `> - 📅 Hari: ${moment().tz("Asia/Jakarta").format("dddd")}\n` +
-    `> - 📅 Tanggal: ${moment().tz("Asia/Jakarta").format("DD MMMM YYYY")}`
-
-  menuText += `\n─────────────────────────\n`
-
   const pluginsDir = path.join(__dirname, '..', 'plugins')
   const getAllPlugins = (dir) => {
     let results = []
@@ -81,18 +51,21 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
   }).filter(p => p && p.help && p.tags)
 
   let tagMap = {}
+  let totalCommand = 0
+
   for (let plugin of plugins) {
     for (let tag of plugin.tags) {
       if (!tagMap[tag]) tagMap[tag] = []
       tagMap[tag].push(...plugin.help)
+      totalCommand += plugin.help.length
     }
   }
 
-  // Masukkan juga dari case.js
   const caseCategories = getCaseCategories()
   for (let [cat, commands] of Object.entries(caseCategories)) {
     if (!tagMap[cat]) tagMap[cat] = []
     tagMap[cat].push(...commands)
+    totalCommand += commands.length
   }
 
   Object.keys(tagMap).forEach(tag => {
@@ -101,6 +74,37 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
 
   tagMap = Object.fromEntries(Object.entries(tagMap).sort(([a], [b]) => a.localeCompare(b)))
 
+  let header = `☘️ *N A K A N O  N I N O* ☘️
+👋 Hai nama saya Nakano Nino saya akan membantu anda dengan fitur yang sediakan!\n> 🫶 Silahkan cek menunya dibawah yaa
+─────────────────────────\n\n`
+
+  let footer = `📢 *Jika Anda menemui masalah, hubungi developer bot @${global.creator.split("@")[0]}.*
+
+> *Fitur Limit*: 🥈
+> *Fitur Premium*: 🥇
+─────────────────────────`
+
+  let menuText = /*`🎮 *Info Pengguna*:\n` +
+    `> - 🧑‍💻 Nama: ${m.pushName}\n` +
+    `> - 🏷️ Tag: @${m.sender.split("@")[0]}\n` +
+    `> - 🎖️ Status: ${isOwner ? "Developer" : isVip ? 'VIP User' : isPremium ? 'Premium User' : 'Free User'}\n` +
+    `> - ⚖️ Limit: ${isOwner ? "Unlimited" : user.limit}\n` +
+    `> - ⚡ Point: ${isOwner ? "Unlimited" : user.point}\n` +
+  	`> - 💵 Saldo: ${isOwner ? "Unlimited" : user.saldo}\n\n` +*/
+    `🤖 *Info Bot*:\n` +
+    `> - 🏷️ Nama: ${pkg.name}\n` +
+    `> - 🔢 Versi: v${pkg.version}\n` +
+    `> - 👑 Developer: ${pkg.author}\n` +
+    `> - 🕰️ Waktu Aktif: ${runtime2(process.uptime())}\n` +
+    `> - 📃 Total Fitur: [ ${totalCommand} ]\n` +
+    `> - 🔑 Prefix: [ ${prefix} ]`
+    /*`🕰️ *Info Waktu*:\n` +
+    `> - 🕒 ${moment().tz("Asia/Jakarta").format("HH:mm:ss")} WIB\n` +
+    `> - 📅 Hari: ${moment().tz("Asia/Jakarta").format("dddd")}\n` +
+    `> - 📅 Tanggal: ${moment().tz("Asia/Jakarta").format("DD MMMM YYYY")}`*/
+
+  menuText += `\n─────────────────────────\n`
+    
   const input = args.join(' ').toLowerCase()
 
   if (input === 'all') {
@@ -118,7 +122,7 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
         }*/
         menuText += featureText + '\n'
       })
-      menuText += `─────────────────────────\n`
+      menuText += `─────────────────────────\n\n`
     }
 
     return m.reply({
@@ -128,8 +132,8 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
       fileLength: Infinity,
       pageCount: 2025,
       jpegThumbnail: "",
-      caption: header + menuText.trim(),
-      footer: footer,
+      caption: header + menuText.trim() + footer,
+      footer: global.footer,
       buttons: [
         { buttonId: '.sc', buttonText: { displayText: 'SC' }, type: 1 },
         { buttonId: '.ping', buttonText: { displayText: 'PING' }, type: 1 },
@@ -163,7 +167,7 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
       }*/
       menuText += featureText + '\n'
     })
-    menuText += `─────────────────────────\n`
+    menuText += `─────────────────────────\n\n`
 
     return m.reply({
       document: fs.readFileSync(path.join(__dirname, '../../package.json')),
@@ -172,8 +176,8 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
       fileLength: Infinity,
       pageCount: 2025,
       jpegThumbnail: "",
-      caption: header + menuText.trim(),
-      footer: footer,
+      caption: header + menuText.trim() + footer,
+      footer: global.footer,
       buttons: [
         { buttonId: '.sc', buttonText: { displayText: 'SC' }, type: 1 },
         { buttonId: '.ping', buttonText: { displayText: 'PING' }, type: 1 },
@@ -197,7 +201,7 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
 
   let teks = menuText + `\n📂 *Daftar Kategori Menu:*\n` +
     Object.keys(tagMap).map((tag, i) => `> (${i + 1}) ${prefix + command} ${tag}`).join('\n')
-  teks += `\n─────────────────────────\n`
+  teks += `\n─────────────────────────\n\n`
   await m.react('🫶🏽');
   m.reply({
     document: fs.readFileSync(path.join(__dirname, '../../package.json')),
@@ -219,8 +223,8 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
         renderLargerThumbnail: true
       },
     },
-    caption: header + teks,
-    footer: footer,
+    caption: header + teks + footer,
+    footer: global.footer,
     buttons: [
       { buttonId: '.sc', buttonText: { displayText: 'SC' }, type: 1 },
       { buttonId: '.ping', buttonText: { displayText: 'PING' }, type: 1 },
@@ -243,11 +247,19 @@ let nakano = async (m, { wbk, prefix, command, isOwner, isVip, isPremium, args }
                 }]
               }, {
                 title: `Information! 🌟`,
-                highlight_label: `Top`,
+                highlight_label: ``,
                 rows: [{
-                  title: "🏆 Top User",
+                  title: "👤 Profile",
+                  description: `Cek profil kamu disini dan lihat status serta limit yang kamu punya! Ayo, cek sekarang dan lihat seberapa keren kamu! 😉✨`,
+                  id: `${prefix}profile`,
+                },{
+                  title: "🏆 Leaderboard Top User",
                   description: `Hmm...? 🤔 Siapa coba yang paling sering ngobrol sama aku disini? Jangan bilang... kamu? 😳💢`,
                   id: `${prefix}topuser`,
+                },{
+                  title: "🏆 Leaderboard Top User Group",
+                  description: `Tunggu, kamu yang paling sering aktif di grup? Hah? Jangan buat aku tersipu gitu dong! Jangan kaget kalau aku mulai... bales dengan lebih perhatian yaa! 😆💖`,
+                  id: `${prefix}topusergroup`,
                 }]
               }, {
                 title: `Silahkan dipilih menu yang tersedia ya kak. 🤩`,

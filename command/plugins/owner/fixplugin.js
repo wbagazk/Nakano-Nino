@@ -16,14 +16,12 @@ const nakano = async (m, { args, prefix, command }) => {
         return m.reply('✅ Tidak ada command yang diblokir karena error.');
     }
 
-    // Handle fixerror clear
     if (args[0] === 'all') {
         data.listcmdblock = [];
         fs.writeFileSync(fiturErrorPath, JSON.stringify(data, null, 2));
         return m.reply('✅ Semua command yang diblokir berhasil dibuka kembali!');
     }
 
-    // Handle fixerror <nomor> (berdasarkan nomor urut)
     if (args[0] && !isNaN(args[0])) {
         const index = parseInt(args[0]) - 1;
         if (index >= 0 && index < data.listcmdblock.length) {
@@ -35,7 +33,6 @@ const nakano = async (m, { args, prefix, command }) => {
         }
     }
 
-    // Handle fixerror <item.command> (berdasarkan nama command)
     if (args[0]) {
         const commandName = args[0];
         const index = data.listcmdblock.findIndex(item => item.command === commandName);
@@ -49,7 +46,6 @@ const nakano = async (m, { args, prefix, command }) => {
         }
     }
 
-    // Tampilkan daftar blok
     let teks = `📛 *Daftar Command Terblokir (karena error)*\n\n`;
     data.listcmdblock.forEach((item, i) => {
         teks += `${i + 1} Command: ${item.command}\n- Plugin: ${item.plugin}\n- Attempt: ${item.attempt}\n\n`;

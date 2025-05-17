@@ -56,10 +56,8 @@ const fakeQuoted = (m, pushname, usernomor, botName, wm) => {
         },
         message: {
             'contactMessage': {
-                'displayName': botName,
-                'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${pushname},;;;\nFN:${pushname}\nitem1.TEL;waid=6285183134846:6285183134846\nitem1.X-ABLabel:Mobile\nEND:VCARD`,
-                'jpegThumbnail': nakanonino,
-                thumbnail: nakanonino,
+                'displayName': m.pushName,
+                'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${m.pushName};\nFN:${m.pushName}\nitem1.TEL;waid=${m.sender?.replace(/\D/g, '')}:${m.pushName}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
                 sendEphemeral: true
             }
         }
@@ -67,7 +65,7 @@ const fakeQuoted = (m, pushname, usernomor, botName, wm) => {
 
     const ftroli = {
         key: {
-            remoteJid: '6281938781378-1613534871@g.us',
+            remoteJid: global.sosmed?.idgcwa,
             participant: '13135550002@s.whatsapp.net'
         },
         message: {

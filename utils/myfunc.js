@@ -1,7 +1,4 @@
-const { 
-	proto, delay, downloadContentFromMessage, generateWAMessage, reJidsSameUser, 
-	getContentType, jidDecode
-} = require('baileys-pro');
+const { proto, delay, downloadContentFromMessage, generateWAMessage, reJidsSameUser, getContentType, jidDecode } = require('baileys');
 const axios = require('axios');
 const moment = require('moment-timezone');
 const { sizeFormatter } = require('human-readable');

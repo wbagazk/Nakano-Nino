@@ -31,7 +31,7 @@ let nakano = async (m, { wbk, text, prefix, command, mime, quoted }) => {
         await m.react('🕛');
         let atas = text.split('|')[0] ? text.split('|')[0] : '';
         let bawah = text.split('|')[1] ? text.split('|')[1] : '';
-        let fileMime = await wbk.downloadAndSaveMediaMessage(quoted);
+        let fileMime = await wbk.downloadMediaMessage(quoted);
         let fileUrl = await pxpicCDN(fileMime);
         let meme = `https://api.memegen.link/images/custom/${encodeURIComponent(atas)}/${encodeURIComponent(bawah)}.png?background=${fileUrl}`;
     	const buffer = await getBuffer(meme);

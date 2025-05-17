@@ -1,6 +1,9 @@
+const { clockString } = require('../../../utils/myfunc')
+
 let nakano = async (m, { wbk, text, args, prefix, command }) => {
     const db = global.db.data;
-    const jumlahTarget = Math.floor(Math.random() * 15000);
+    const jumlahTargetPoint = Math.floor(Math.random() * 10000);
+    const jumlahTargetLimit = Math.floor(Math.random() * 10);
     const sender = m.sender;
     const botNumber = wbk.user.id.replace(/:[^@]+/, '');
 
@@ -23,6 +26,8 @@ let nakano = async (m, { wbk, text, args, prefix, command }) => {
     if (!db.rpg[sender]) db.rpg[sender] = { lastrampok: 0 };
     if (!db.users[sender].point) db.users[sender].point = 0;
     if (!db.users[target].point) db.users[target].point = 0;
+    if (!db.users[sender].limit) db.users[sender].limit = 0;
+    if (!db.users[target].limit) db.users[target].limit = 0;
 
     const lastAksi = db.rpg[sender].lastrampok || 0;
     const now = new Date() * 1;
@@ -34,20 +39,26 @@ let nakano = async (m, { wbk, text, args, prefix, command }) => {
         return m.reply(`⏳ Kamu baru aja ${aksi} tau~\nSabar ya, tunggu *${waktuTungguString}* dulu baru boleh ${aksi} lagi 😤`);
     }
 
-    if (db.users[target].point < 15000) {
+    if (db.users[target].point < 10000) {
+        return m.reply("😕 Eh, dia tuh miskin banget tau... Mau ambil apa coba? 😭");
+    }
+    if (db.users[target].limit < 10) {
         return m.reply("😕 Eh, dia tuh miskin banget tau... Mau ambil apa coba? 😭");
     }
 
-    db.users[target].point -= jumlahTarget;
-    db.users[sender].point += jumlahTarget;
+    db.users[target].point -= jumlahTargetPoint;
+    db.users[sender].point += jumlahTargetPoint;
+    db.users[target].limit -= jumlahTargetLimit;
+    db.users[sender].limit += jumlahTargetLimit;
     db.rpg[sender].lastrampok = now;
 
-    return m.reply(`🎉 Yeay~ ${hasil} sukses!\nKamu dapet *${jumlahTarget.toLocaleString()} Point* dari orang itu~ 😈💰`);
+    return m.reply(`🎉 Yeay~ ${hasil} sukses!\nKamu dapet *${jumlahTargetPoint.toLocaleString()} Point* dan *${jumlahTargetLimit} Limit* dari orang itu~ 😈💰`);
 };
 
 nakano.help = ['rampok', 'robbery'];
 nakano.tags = ['rpg'];
 nakano.command = ['rampok', 'robbery'];
 nakano.rpg = true;
+nakano.group = true;
 
 module.exports = nakano;

@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const { execSync } = require('child_process');
 const { generateRandomHexName } = require('../../../utils/myfunc');
 
@@ -21,19 +20,19 @@ let nakano = async (m, { wbk }) => {
             await m.reply('🗂️ Membuat backup...\nFile akan dikirim lewat chat pribadi.');
         }
 
-        execSync(`zip -r -q ${filename}.zip ${allFiles.join(' ')}`);
+        execSync(`tar -czf ${filename}.tar.gz ${allFiles.join(' ')}`);
 
-        const zipPath = path.resolve(`${filename}.zip`);
-        const buffer = fs.readFileSync(zipPath);
+        const tarPath = path.resolve(`${filename}.tar.gz`);
+        const buffer = fs.readFileSync(tarPath);
 
         await wbk.sendMessage(m.sender, {
             document: buffer,
-            mimetype: 'application/zip',
-            fileName: `Backup-${filename}.zip`,
+            mimetype: 'application/gzip',
+            fileName: `BACKUP SC NAKANO NINO - ${filename.toUpperCase()}.tar.gz`,
             caption: '✅ Backup berhasil! Simpan file ini baik-baik ya.'
         }, { quoted: m });
 
-        fs.unlinkSync(zipPath);
+        fs.unlinkSync(tarPath);
     } catch (err) {
         console.error('[ERROR BACKUP]', err);
         return m.reply('❌ Gagal melakukan backup. Coba lagi nanti.');

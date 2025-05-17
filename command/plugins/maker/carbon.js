@@ -1,15 +1,19 @@
-const { writeExif } = require("../../../utils/exif");
-const { getBuffer } = require("../../../utils/myfunc");
+const axios = require("axios");
 
 let nakano = async (m, { text, prefix, command }) => {
 	if (!text) return m.reply(`Contoh : ${prefix + command} console.log('Hello, world!');`);
     
     await m.react('⏱️');
     
-    const buffer = await getBuffer(api.fastrestapis + `/maker/carbon/simple?code=${encodeURIComponent(text)}`);
+    let { data } = await axios.get(api.fastrestapis + '/maker/carbon/simple', {
+        params: {
+            code: encodeURIComponent(text)
+        },
+        responseType: 'arraybuffer'
+    });
     
     m.reply({
-        image: buffer,
+        image: Buffer.from(data),
         caption: 'Gambar jadi! Udah keren banget kan? Kalau enggak, tinggal bilang, ya! 😏'
     })
     await m.react('✅');

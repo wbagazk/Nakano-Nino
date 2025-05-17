@@ -4,7 +4,7 @@ const path = require('path')
 function getCaseCommands() {
   const casePath = path.join(__dirname, '../../case.js')
   const content = fs.readFileSync(casePath, 'utf-8')
-  const regex = /case\s+["'`](.*?)["'`]:\s*{[^}]*\/\/\s*Kategory:\s*["'`](.*?)["'`]/g
+  const regex = /case\s+["'`](.*?)["'`]:\s*{[^}]*\/\/\s*Kategori:\s*["'`](.*?)["'`]/g
   let match, result = {}
   while ((match = regex.exec(content)) !== null) {
     const command = match[1]

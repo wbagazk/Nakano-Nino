@@ -1,17 +1,16 @@
 //=========================================================
-// BAILEYS
-const { downloadContentFromMessage, BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, InteractiveMessage, getContentType, delay, getDevice, getBinaryNodeChild, getBinaryNodeChildren, getBinaryNodeChildString, baileys, isLidUser, S_WHATSAPP_NET } = require('baileys-pro');
-//=========================================================
-
-//=========================================================
 // MODULE
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+const axios = require('axios');
 const chalk = require('chalk');
+const moment = require('moment');
 const cron = require('node-cron');
+const canvafy = require("canvafy");
 const fetch = require('node-fetch');
 const speed = require('performance-now');
+const similarity = require('similarity');
 const PhoneNumber = require('awesome-phonenumber');
 const readmore = String.fromCharCode(8206).repeat(4001);
 const { exec, execSync, spawn } = require("child_process");
@@ -21,29 +20,18 @@ const { randomBytes } = require('crypto');
 //=========================================================
 require('../settings/settings')
 const fakeQuoted = require('../utils/fakeQuoted');
-const ucapanWaktu= require('../utils/getUcapanWaktu');
-const { loadingBar } = require('../utils/loadingbar');
+const ucapanWaktu = require('../utils/getUcapanWaktu');
 const { checkAntiSpam, resetSpam } = require('../utils/antispam')
-const { addAfkUser, checkAfkUser, getAfkId, getAfkPosition, getAfkReason, getAfkTime } = require('../utils/afk');
-const { addSewaGroup, getSewaExpired, getSewaPosition, checkSewaExpired, checkSewaGroup, getAllSewaGroups } = require('../utils/sewa');
-const { gameSlot, gameCasinoSolo, gameMerampok, daily, transferLimit, transferUang, buy, setUang, setLimit } = require('../utils/game');
+const { sendButtonText, sendButtonImage, sendButtonVideo, sendButtonDocument, createCarouselMessage } = require('../utils/messageButton');
 const { addPremiumUser, checkPremiumUser, expiredCheck, getAllPremiumUser, getPremiumExpired, getPremiumPosition } = require('../utils/premium');
-const { smsg, await, clockString, enumGetKey, fetchBuffer, fetchJson, format, formatDate, formatp, generateProfilePicture, getBuffer, getGroupAdmins, getRandom, isUrl, json, logic, msToDate, parseMention, runtime, sleep, sort, toNumber, monospace, litespace, toRupiah, pickRandom, capitalizeWords, generateRandomHexName, getRandomInt, formatDateToIndonesia, formatNumber, formatDuration, formatBytes, decodeJid } = require('../utils/myfunc');
+const { format, getGroupAdmins, parseMention, runtime, sleep, monospace, litespace, decodeJid, await } = require('../utils/myfunc');
 //=========================================================
 
 //=========================================================
 // ============== BACA DB JSON
-let sewa = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/role/sewa.json')));
-let owner = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/role/owner.json')));
-let afk = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/function/afk.json')));
-let premium = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/role/premium.json')));
-let banned = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/function/banned.json')));
-let antinsfw = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/function/nsfw.json')));
-let contacts = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/role/contacts.json')));
-let userActivity = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/role/user.json')));
-let badword = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/function/badword.json')));
-let blacklist = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/function/blacklist.json')));
-let whitelist = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/function/whitelist.json')));
+const owner = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/role/owner.json')));
+const premium = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/role/premium.json')));
+const freqCommand = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/function/frequentlycommand.json')));
 //=========================================================
 
 //=========================================================
@@ -125,27 +113,19 @@ try {
     const isGroupAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
     const groupOwner = m.isGroup ? groupMetadata.owner : ''
     const isGroupOwner = m.isGroup ? (groupOwner ? groupOwner : groupAdmins).includes(m.sender) : false
-    const isBan = banned.includes(m.sender);
-    const AntiNsfw = m.isGroup ? antinsfw.includes(m.chat) : false
     const clientId = wbk.user.id.split(':')[0];
     const senderbot = m.key.fromMe ? wbk.user.id.split(':')[0] + "@s.whatsapp.net" || wbk.user.id : m.key.participant || m.key.remoteJid;
     const senderId = senderbot.split('@')[0];
     const isBot = clientId.includes(senderId);
-    const isSewa = checkSewaGroup(m.chat);
-    const isBlacklist = blacklist.includes(m.sender);
-    const isWhitelist = whitelist.includes(m.sender);
-    const isAfkOn = checkAfkUser(m.sender, afk)
-    const isUser = userActivity.includes(m.sender);
     const isVip = db.data && db.data.users && db.data.users[m.sender] ? db.data.users[m.sender].vip : false;
     const isCreator = [botNumber, ...owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
     const isPremium = isCreator || checkPremiumUser(m.sender, premium);
     expiredCheck(wbk, m, premium);
-    checkSewaExpired(wbk);
     let timestamp = speed();
     let latensi = speed() - timestamp;
     let usernomor = await PhoneNumber('+' + m.sender.replace('@s.whatsapp.net', '')).getNumber('international');
     let ownnomor = await PhoneNumber('+' + ownerNumber.replace('@s.whatsapp.net', '')).getNumber('international');
-    const { fconver, fmen, fbot, fkontak, ftroli, fevent } = fakeQuoted(m, pushname, usernomor, botName, wm);
+    const { fconver, fmen, fbot, fkontak, ftroli, fevent } = fakeQuoted(m, pushname, usernomor, global.botName, global.wm);
 //=========================================================
     
 //=========================================================
@@ -154,60 +134,58 @@ try {
         let user = db.data.users[m.sender] || {};
         if (typeof user !== "object") db.data.users[m.sender] = {};
         if (!("register" in user)) user.register = false;
+        if (!("cekRegister" in user)) user.cekRegister = false;
+        if (!("verifNumber" in user)) user.verifNumber = randomBytes(3).toString("hex");
         if (!("serialNumber" in user)) user.serialNumber = randomBytes(16).toString("hex");
-        if (!("chatuser" in user) || typeof user.chatuser !== "number" || isNaN(user.chatuser)) user.chatuser = 0;
         if (!("name" in user)) user.nama = "User";
+        if (!("age" in user)) user.age = 0;
+        if (!("city" in user)) user.city = "Jember";
         if (!("nickname" in user)) user.nickname = wbk.getName(m.sender);
         if (!("limit" in user) || typeof user.limit !== "number" || isNaN(user.limit)) user.limit = user.vip ? global.limit.vip : isPremium ? global.limit.premium : global.limit.free;
-        if (!("point" in user)) user.point = user.vip ? global.point.vip : isPremium ? global.point.premium : global.point.free;
+        if (!("point" in user) || typeof user.point !== "number" || isNaN(user.point)) user.point = user.vip ? global.point.vip : isPremium ? global.point.premium : global.point.free;
         if (!("saldo" in user) || typeof user.saldo !== "number" || isNaN(user.saldo)) user.saldo = 0;
         if (!isPremium) user.premium = false;
         if (!("vip" in user)) user.vip = false;
         if (!("rpg" in user)) user.rpg = false;
         if (!("badword" in user)) user.badword = 0;
-        if (!("pacar" in user)) user.pacar = '';
-        if (!("askot" in user)) user.askot = '';
-        if (!("umur" in user) || typeof user.umur !== "number" || isNaN(user.umur)) user.umur = 0;
-        if (!("status_deposit" in user)) user.status_deposit = false;
-        if (!("orderkuota" in user)) user.orderkuota = {
-            msg: null,
-            chat: null,
-            idDeposit: null,
-            amount: null,
-            exp: null
-        };
-        if (!("atlantic" in user)) user.atlantic = {
-            msg: null,
-            chat: null,
-            idDeposit: null,
-            amount: null,
-            exp: null
-        };
         db.data.users[m.sender] = user;
         
-        let chats = db.data.chats[m.chat] || {};
-        if (typeof chats !== "object") db.data.chats[m.chat] = {};
-        if (!("badword" in chats)) chats.badword = false;
-        if (!("antiforeignnum" in chats)) chats.antiforeignnum = false;
-        if (!("antiviewonce" in chats)) chats.antiviewonce = false;
-        if (!("autoaipc" in chats)) chats.autoaipc = false;
-        if (!("autoaigc" in chats)) chats.autoaigc = false;
-        if (!("antibot" in chats)) chats.antibot = false;
-        if (!("antispam" in chats)) chats.antispam = false;
-        if (!("antimedia" in chats)) chats.antimedia = false;
-        if (!("antiimage" in chats)) chats.antiimage = false;
-        if (!("antivideo" in chats)) chats.antivideo = false;
-        if (!("antiaudio" in chats)) chats.antiaudio = false;
-        if (!("antisticker" in chats)) chats.antisticker = false;
-        if (!("anticontact" in chats)) chats.anticontact = false;
-        if (!("antilocation" in chats)) chats.antilocation = false;
-        if (!("antidocument" in chats)) chats.antidocument = false;
-        if (!("welcome" in chats)) chats.welcome = false;
-        if (!("antilink" in chats)) chats.antilink = false;
-        if (!("antilinkgc" in chats)) chats.antilinkgc = false;
-        if (!("mute" in chats)) chats.mute = false;
-        if (!("liststore" in chats)) chats.liststore = {};
-        db.data.chats[m.chat] = chats;
+        if (m.chat.endsWith('@g.us')) {
+            let chats = db.data.chats[m.chat] || {};
+            if (typeof chats !== "object") db.data.chats[m.chat] = {};
+            if (!("welcome" in chats)) chats.welcome = {
+                check: false,
+                text: "✨ *Selamat Datang di Grup, Kak @user!* 👋\n\nHai Kak @pushname! Senang banget kamu bisa join di grup ini. Yuk, saling sapa dan kenalan sama member lainnya. Jangan lupa baca deskripsi grup ya~ 💬💕"
+            };
+            if (!("leave" in chats)) chats.leave = {
+                check: false,
+                text: "😢 *Selamat Tinggal, Kak @user!* 👋\n\nTerima kasih sudah menjadi bagian dari grup ini. Semoga kita bisa bertemu lagi di lain kesempatan. Hati-hati di perjalanan ya~ 💐"
+            };
+            if (!("adminevent" in chats)) chats.adminevent = false;
+            if (!("groupevent" in chats)) chats.groupevent = false;
+            if (!("antibot" in chats)) chats.antibot = {
+                check: false,
+                kick: false
+            };
+            if (!("antilink" in chats)) chats.antilink = {
+                check: false,
+                kick: false
+            };
+            if (!("antibadword" in chats)) chats.antibadword = {
+                check: false,
+                text: null,
+                kick: false
+            };
+            if (!("antistatusmention" in chats)) chats.antistatusmention = {
+                check: false,
+                kick: false
+            };
+            if (!("autosholat" in chats)) chats.autosholat = {
+                check: false,
+                city: null
+            };
+            db.data.chats[m.chat] = chats;
+        }
         
         let messages = db.data.messages[m.sender] || {}
         if (typeof messages !== 'object') db.data.messages[m.sender] = {}
@@ -220,79 +198,35 @@ try {
         if (!("title" in rpgUser)) rpgUser.title = '';
         if (!("coins" in rpgUser)) rpgUser.coins = 0;
         if (!("exp" in rpgUser)) rpgUser.exp = 2500;
-        if (!("rank" in rpgUser)) rpgUser.rank = 0;
-        if (!("level" in rpgUser)) rpgUser.level = 0;
-        if (!("kapal" in rpgUser )) rpgUser.kapal = false;
-        if (!("darahkapal" in rpgUser )) rpgUser.darahkapal = 100;
-        if (!("pickaxe" in rpgUser )) rpgUser.pickaxe = false;
-        if (!("darahpickaxe" in rpgUser )) rpgUser.darahpickaxe = 100;
-        if (!("kapak" in rpgUser )) rpgUser.kapak = false;
-        if (!("darahkapak" in rpgUser )) rpgUser.darahkapak = 100;
-        if (!("bzirah" in rpgUser )) rpgUser.bzirah = false;
-        if (!("darahbzirah" in rpgUser )) rpgUser.darahbzirah = 100;
-        if (!("pedang" in rpgUser )) rpgUser.pedang = false;
-        if (!("darahpedang" in rpgUser )) rpgUser.darahpedang = 100;
-        if (!("darahuser" in rpgUser )) rpgUser.darahuser = 100;
-        if (!("rumah" in rpgUser )) rpgUser.rumah = 0;
-        if (!("besi" in rpgUser )) rpgUser.besi = 4;
-        if (!("kayu" in rpgUser )) rpgUser.kayu = 2;
-        if (!("emas" in rpgUser )) rpgUser.emas = 0;
-        if (!("perak" in rpgUser )) rpgUser.perak = 0;
-        if (!("batubara" in rpgUser )) rpgUser.batubara = 0;
-        if (!("bulu" in rpgUser )) rpgUser.bulu = 0;
-        if (!("kain" in rpgUser )) rpgUser.kain = 0;
-        if (!("wilayah" in rpgUser )) rpgUser.wilayah = "Indonesia";
-        if (!("wilayahrumah" in rpgUser )) rpgUser.wilayahrumah = "Indonesia";
-        if (!("musuh" in rpgUser )) rpgUser.musuh = 0;
-        if (!("ikan" in rpgUser )) rpgUser.ikan = 0;
-        if (!("domba" in rpgUser )) rpgUser.domba = 0;
-        if (!("sapi" in rpgUser )) rpgUser.sapi = 0;
-        if (!("ayam" in rpgUser )) rpgUser.ayam = 0;
-        if (!("bank" in rpgUser )) rpgUser.bank = 0;
-        if (!("burutime" in rpgUser )) rpgUser.burutime = 0;
         if (!("lastclaim" in rpgUser )) rpgUser.lastclaim = 0;
-        if (!("lastdagang" in rpgUser )) rpgUser.lastdagang = 0;
-        if (!("lastbansos" in rpgUser )) rpgUser.lastbansos = 0;
-        if (!("lastkerja" in rpgUser )) rpgUser.lastkerja = 0;
         if (!("lastrampok" in rpgUser )) rpgUser.lastrampok = 0;
         db.data.rpg[m.sender] = rpgUser ;
 
         let setting = db.data.settings[botNumber] || {};
         if (typeof setting !== "object") db.data.settings[botNumber] = {};
-        if (!("typemenu" in setting)) setting.typemenu = "v1";
-        if (!("typereply" in setting)) setting.typereply = "v4";
-        if (!("totalhit" in setting)) setting.totalhit = 0;
-        if (!("totalError" in setting)) setting.totalError = 0;
-        if (!("online" in setting)) setting.online = false;
+        if (!("onlyRegister" in setting)) setting.onlyRegister = false;
         if (!("badword" in setting)) setting.safesearch = false;
-        if (!("autosticker" in setting)) setting.autosticker = false;
-        if (!("autodownload" in setting)) setting.autodownload = false;
         if (!("autobio" in setting)) setting.autobio = false;
+        if (!("anticall" in setting)) setting.anticall = false;
+        if (!("antispam" in setting)) setting.antispam = false;
         if (!("autoread" in setting)) setting.autoread = false;
         if (!("autorecordtype" in setting)) setting.autorecordtype = false;
         if (!("autorecord" in setting)) setting.autorecord = false;
         if (!("autotype" in setting)) setting.autotype = false;
-        if (!("autoblocknum" in setting)) setting.autoblocknum = false;
-        if (!("onlygc" in setting)) setting.onlygc = false;
-        if (!("onlypc" in setting)) setting.onlypc = false;
-
-        const watermark = {
-            packname: global.packname,
-            author: global.author
+        if (!("autoswview" in setting)) setting.autoswview = false;
+        if (!("autoswviewreact" in setting)) setting.autoswviewreact = false;
+        if (!("autobackup" in setting)) setting.autobackup = {
+            check: false,
+            interval: 86400000
         };
-        if (!("watermark" in setting)) setting.watermark = watermark;
-        if (!("about" in setting)) {
-            setting.about = {
-                'bot': {
-                    'nick': wbk.getName(botNumber),
-                    'alias': botName
-                },
-                'owner': {
-                    'nick': wbk.getName(ownerNumber + "@s.whatsapp.net"),
-                    'alias': ownerNumber
-                }
-            };
-        }
+        if (!("autoclearsession" in setting)) setting.autoclearsession = {
+            check: false,
+            interval: 86400000
+        };
+        if (!("autocleartemp" in setting)) setting.autocleartemp = {
+            check: false,
+            interval: 86400000
+        };
         db.data.settings[botNumber] = setting;
     } catch (error) {
         console.error("⚠️ Terjadi kesalahan:", error);
@@ -306,6 +240,7 @@ try {
         let title = chalk.white(chalk.bgHex("#4a69bd").bold("🚀  There is a message  🚀"));
         let date = chalk.cyanBright(`${"📅  DATE".padEnd(20)} : ${new Date().toLocaleString("id-ID")}`);
         let sender = chalk.yellowBright(`${"🗣️  SENDERNAME".padEnd(21)} : ${m.pushName || botName}`);
+        let device = chalk.whiteBright(`${"📱  Device".padEnd(20)} : ${m.device}`);
         let type = chalk.whiteBright(`${"💬  Type".padEnd(20)} : ${m.mtype}`);
         let chat = chalk.whiteBright(`${"💬  Chat".padEnd(20)} : ${m.text}`);
         let jid = chalk.magentaBright(`${"👤  JIDS".padEnd(20)} : ${m.sender}`);
@@ -315,6 +250,7 @@ try {
             console.log(title);
             console.log(date);
             console.log(sender);
+            console.log(device);
             console.log(jid);
             console.log(type);
             console.log(chat);
@@ -324,6 +260,7 @@ try {
             console.log(title);
             console.log(date);
             console.log(sender);
+            console.log(device);
             console.log(jid);
             console.log(type);
             console.log(group);
@@ -338,9 +275,9 @@ try {
     global.m.reply = async function (teks, status = null, isLarger = false) {
         const nakanoninoRandom = getRandomThumb();
         const isPDF = typeof teks === 'object' && (teks.document || teks.mimetype === 'application/pdf');
-        const statusKeys = ['error', 'denied'];
+        const statusKeys = ['error', 'denied', 'detectlink', 'detectbadword', 'detectbot'];
         const isStatusKey = statusKeys.includes(status);
-        const customThumbnail = isStatusKey ? (global.image[status] || nakanoninoRandom) : (status === true ? image.error : nakanoninoRandom);
+        const customThumbnail = isStatusKey ? (global.image.status[status] || nakanoninoRandom) : (status === true ? image.error : nakanoninoRandom);
         const contextInfo = {
             mentionedJid: typeof teks === 'string'
                             ? parseMention(teks)
@@ -350,7 +287,6 @@ try {
                                 ? parseMention(teks.text)
                                 : [],
             externalAdReply: {
-                showAdAttribution: true,
                 mediaUrl: "https://www.youtube.com/",
                 mediaType: 1,
                 previewType: isPDF ? "NONE" : "PHOTO",
@@ -359,17 +295,23 @@ try {
                     status === 'error' || status === true
                         ? "Duh... error lagi dan lagi~ bisa nggak sih mikirin betapa capeknya aku!? 😭"
                         : status === 'denied'
-                            ? "AKSES DITOLAK"
-                            : botName,
+                            ? "🚫 AKSES DITOLAK"
+                            : status === 'detectlink'
+                                ? "🔗 TERDEKSI LINK"
+                                : status === 'detectbadword'
+                                    ? "💬 TERDEKSI BADWORD"
+                					: status === 'detectbot'
+                						? "🤖 TERDEKSI BOT"
+                                    	: botName,
                 body:
-                    status === 'denied'
+                    status === 'denied' || status === 'detectlink' || status === 'detectbadword' || status === 'detectbot'
                         ? ""
                         : status === 'error' || status === true
                             ? "❌ ERROR | エラー"
                             : desc,
                 thumbnail: customThumbnail,
                 sourceUrl:
-                    status === 'denied'
+                    status === 'denied' || status === 'detectlink' || status === 'detectbadword' || status === 'detectbot'
                         ? ""
                         : (status === 'error' || status === true ? "" : sosmed.website)
             }
@@ -452,7 +394,7 @@ try {
                 db.data.messages[m.sender].lastchat = new Date().getTime();
                 let welcomeText = `Halo Kak ${pushname}! 👋\n\nMohon diperhatikan! Nomor ini sekarang digunakan sebagai bot dan tidak lagi dikelola langsung oleh owner sebelumnya. Jika Kakak memiliki keperluan atau ingin menghubungi owner, silakan hubungi nomor terbaru berikut:\n\n📞 *wa.me/${ownerNumber}*\n\nBot ini siap membantu Kakak dengan berbagai fitur yang tersedia. Terima kasih atas perhatiannya. 😊`;
                 const buttonIOS = {
-		            text: welcomeText,
+		            text: welcomeText + '\n\n> Mohon maaf, beberapa fitur tidak berfungsi sebagaimana mestinya pada device iPhone.',
 		            footer: wm,
 		            buttons: [
 		                { buttonId: `.menu`, buttonText: { displayText: '🎁 Menu Utama' }, type: 1 },
@@ -489,7 +431,7 @@ try {
                 if (m.device === "ios") { // welcome pengguna iphone (chat pribadi)
                     wbk.sendMessage(m.chat, buttonIOS, { quoted: ftroli });
                 } else if (m.device === 'android') { // welcome pengguna android (chat pribadi)
-                    wbk.sendButtonText(m.chat, button, welcomeText, footer, ftroli);
+                    sendButtonText(wbk, m.chat, button, welcomeText, global.footer, ftroli);
                 }
             }
         }
@@ -497,11 +439,99 @@ try {
 //=========================================================
     
 //=========================================================
+	if (isCmd && command) {
+        if (db.data.settings[botNumber].onlyRegister) {
+            if (!(command === "daftar") && !isCreator && !isGroupAdmins) {
+                if (!db.data.users[m.sender].register) {
+                    const regMessage = "⚠️ Hai kak! Sepertinya Kamu belum terdaftar. Yuk daftar terlebih dahulu dengan mengetik *.daftar* lalu selesaikan pendaftaran untuk mengakses fitur ini.";
+                    return m.reply({
+                        text: regMessage,
+                        footer: wm,
+                        buttons: [{
+                            buttonId: prefix + 'daftar',
+                            buttonText: { displayText: "📄 Daftar" }
+                        }]
+                    });
+                }
+            }
+        }
+    }
+//=========================================================
+  
+//=========================================================
+    if (body && !isCmd && !command) {
+        const user = db.data.users[m.sender];
+        const inputCode = body.trim();
+        const correctCode = user.verifNumber;
+        if (!/^[0-9a-f]{6}$/i.test(body.trim())) return;
+        await m.react('🕛')
+        if (user.register) return m.reply(`Hah?! Kamu itu... udah masukin kode verifikasi tadi, ngapain dimasukin lagi sih?! 😤. Coba cek pakai *${prefix}profile* biar kamu inget!`);
+        if (!user.cekRegister) return m.reply(`Hah?! Kamu itu... emang kamu sudah ngisi form *${prefix}register*?! 😤`, 'denied');
+        if (
+            typeof correctCode !== 'string' || !correctCode.trim() || inputCode !== correctCode
+        ) {
+            return m.reply('⚠️ Kode verifikasi salah. Pastikan kamu memasukkan kode yang benar.');
+        }
+        user.register = true;
+        user.cekRegister = false;
+        user.limit += 20;
+        user.point += 5000;
+        const textReply = `Hmm... baiklah! Aku sudah daftarkan kamu! Jangan bikin aku nyesel ya!
+
+📝 Nama: *${user.name}*
+🎂 Umur: *${user.age} tahun*
+
+Dan ya, ini hadiahnya... jangan salah gunakan ya!
+🎁 Hadiah:
+• 20 Limit (Jangan habisin buat hal aneh!)
+• 5000 Point (Belanjain yang bener!)
+
+Gunakan *${prefix}profile* biar kamu bisa liat datamu. Jangan lupa, aku bakal ngawasin!`;
+        async function generateImage({ profilePicUrl }) {
+            const image = await new canvafy.WelcomeLeave()
+                .setAvatar(profilePicUrl)
+                .setBackground("image", "https://i.ibb.co.com/Psmf4Rq2/hdvcdik-vdah.png")
+                .setTitle((m.pushName.length > 17 ? m.pushName.slice(0, 17) + "..." : m.pushName))
+                .setDescription("Selamat datang di " + global.botName + " ya~")
+                .setBorder("#2a2e35")
+                .setAvatarBorder("#2a2e35")
+                .setOverlayOpacity(0.3)
+                .build();
+            return image;
+        }
+        const profilePic = await wbk.profilePictureUrl(m.sender, 'image').catch(_ => 'https://i.ibb.co.com/3yWBMTsk/51e1c1fc6f50743937e62fca9b942694-t.jpg');
+        const buffer = await generateImage({ profilePicUrl: profilePic });
+        await wbk.sendMessage(m.chat, {
+            text: textReply,
+            contextInfo: {
+                mentionedJid: [m.sender],
+                externalAdReply: {
+                    title: 'Ingat ya, aku bakal ngawasin kamu, jadi jangan macam-macam!',
+                    body: 'Selamat ya~',
+                    thumbnail: buffer,
+                    sourceUrl: '',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: fkontak })
+        await m.react('👤')
+    }
+//=========================================================
+    
+//=========================================================
 // ============== AUTO SHOLAT
-    /*wbk.autosholat = wbk.autosholat ? wbk.autosholat : {};
+	wbk.autosholat = wbk.autosholat ? wbk.autosholat : {};
     if (!m.isNewsletter) {
         if (!(m.chat in wbk.autosholat)) {
-            const data = await fetchJson('https://api.aladhan.com/v1/timingsByCity?city=Jember&country=Indonesia&method=8');
+            const response = await axios.get('https://api.aladhan.com/v1/timingsByCity', {
+                params: {
+                    city: 'Jember',
+                    country: 'Indonesia',
+                    method: 8
+                }
+            });
+            const data = response.data;
             if (data.code === 200) {
                 const jadwalSholat = data.data.timings;
                 const date = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" }));
@@ -541,41 +571,13 @@ try {
                                     mentionedJid: [m.sender],
                                     forwardingScore: 999999,
                                     isForwarded: true,
-                                    forwardedNewsletterMessageInfo: {
-                                        newsletterName: global.wm,
-                                        newsletterJid: global.sosmed.idchwa,
-                                    },
                                     externalAdReply: {
                                         showAdAttribution: true,
                                         title: `Selamat Beribadah, Kak! 🕌`,
                                         body: 'Jember, Indonesia',
                                         previewType: "PHOTO",
                                         thumbnail: nakanonino,
-                                        sourceUrl: global.sosmed.website
-                                    }
-                                }
-                            })
-                        );
-                        wbk.autosholat[m.chat].push(
-                            await wbk.sendMessage(m.chat, {
-                                audio: { url: 'https://files.catbox.moe/9nd3ms.mp3' },
-                                mimetype: 'audio/mp4',
-                                ptt: true,
-                                contextInfo: {
-                                    mentionedJid: [m.sender],
-                                    forwardingScore: 999999,
-                                    isForwarded: true,
-                                    forwardedNewsletterMessageInfo: {
-                                        newsletterName: global.wm,
-                                        newsletterJid: global.sosmed.idchwa,
-                                    },
-                                    externalAdReply: {
-                                        showAdAttribution: true,
-                                        title: `Selamat Beribadah, Kak! 🕌`,
-                                        body: 'Jember, Indonesia',
-                                        previewType: "PHOTO",
-                                        thumbnail: nakanonino,
-                                        sourceUrl: global.sosmed.website
+                                        sourceUrl: ''
                                     }
                                 }
                             })
@@ -587,7 +589,7 @@ try {
                 }
             }
         }
-    }*/
+    }
 //=========================================================
     
 //=========================================================
@@ -601,19 +603,33 @@ try {
     
 //=========================================================
 // ============== PENMABAHAN TOTAL HIT, CHAT USER
-    if (isCmd) {
+    if (isCmd && command) {
+        let now = moment().format('YYYY-MM-DD HH:mm:ss');
+        if (!freqCommand[m.sender]) {
+            freqCommand[m.sender] = {};
+        }
+        if (freqCommand[m.sender][command.toLowerCase()]) {
+            freqCommand[m.sender][command.toLowerCase()].count += 1;
+            freqCommand[m.sender][command.toLowerCase()].lastUsed = now;
+        } else {
+            freqCommand[m.sender][command.toLowerCase()] = {
+                count: 1,
+                lastUsed: now
+            };
+        }
+        fs.writeFileSync(path.join(__dirname, '../src/data/function/frequentlycommand.json'), JSON.stringify(freqCommand, null, 2));
         db.data.settings[botNumber].totalhit += 1;
         db.data.messages[m.sender].allchat += 1;
     }
 //=========================================================
     
 //=========================================================
-    if (global.antispam && isCmd) {
+    if (db.data.settings[botNumber].antispam && isCmd) {
         if (m.sender !== global.creator) {
             const spam = checkAntiSpam(m.sender)
-            const spamBanned = `${litespace("SPAM DETECTED")}\n>😡 Hah?! Kamu dibanned dulu ya! Tunggu *${(spam.banTimeLeft / 1000).toFixed(1)} detik* lagi baru boleh ngomong sama aku lagi~! Jangan bikin aku kesal terus dong~! 😤💥`
+            const spamBanned = `${litespace("SPAM DETECTED")}\n> 😡 Hah?! Kamu dibanned dulu ya! Tunggu *${(spam.banTimeLeft / 1000).toFixed(1)} detik* lagi baru boleh ngomong sama aku lagi~! Jangan bikin aku kesal terus dong~! 😤💥`
             const spamcooldown = `${litespace("SPAM DETECTED")}\n> Eh?! Kok cepet banget? Tunggu dulu lah *${(spam.waitTime / 1000).toFixed(1)} detik* lagi ya~ Aku juga butuh napas tau! 😩✨`
-            const spambantrigerred = `${litespace("SPAM DETECTED")}\n>😤 Ihh! Kamu tuh spam terus sih! Makanya dibanned dulu sementara~ Tunggu yaa, jangan ngeyel! 💢⏳`
+            const spambantrigerred = `${litespace("SPAM DETECTED")}\n> 😤 Ihh! Kamu tuh spam terus sih! Makanya dibanned dulu sementara~ Tunggu yaa nanti coba lagi aja, jangan ngeyel! 💢⏳`
             if (spam.status === 'banned') {
                 return m.reply(spamBanned, 'denied')
             }
@@ -622,6 +638,207 @@ try {
             }
             if (spam.status === 'ban_triggered') {
                 return m.reply(spambantrigerred, 'denied')
+            }
+        }
+    }
+    
+    if (!m.isGroup && !m.key.fromMe && !isCreator && db.data.settings[botNumber].badword) { // private chat
+        const forbiddenWords = [
+            "colmek", "coli", "desah", "bokep", "tobrut", "seksi", "sex", "sexy",
+            "memek", "kontol", "titit", "telanjang", "ngentod", "ngentot",
+            "ngewe", "ewe", "ewean", "puki"
+        ];
+        const foundWords = forbiddenWords.filter(word => {
+            const regex = new RegExp(`\\b${word}\\b`, 'i');
+            return regex.test(budy);
+        });
+        if (foundWords.length > 0) {
+            let user = db.data.users[m.sender];
+            if (!user.badword) user.badword = 0;
+            user.badword += 1;
+            const maxBadword = 5;
+            const remaining = maxBadword - user.badword;
+            if (user.badword >= maxBadword) {
+                await wbk.updateBlockStatus(m.sender, 'block');
+                return m.reply(`${litespace("TERDETEKSI BADWORD")}\n\n🚫 Kamu sudah melanggar batas penggunaan kata kasar sebanyak ${maxBadword} kali.\nMaaf ya, kamu telah diblokir.\n> Unblock? @${global.creator.split("@")[0]}`);
+            }
+            return m.reply(`${litespace("TERDETEKSI BADWORD")}\n\n🚫 Ups, kata berikut dilarang:\n- ${foundWords.map(w => w.replace(/[aeiou]/gi, '#')).join(', ')}\n\n⚠️ Peringatan: ${user.badword}/${maxBadword} (tersisa ${remaining} kali lagi sebelum diblokir!)`);
+        }
+    }
+    
+    if ( m.isGroup && !m.key.fromMe && !isCreator && db.data.chats[m.chat].antibadword?.check ) {
+        const defaultWords = [
+            "colmek", "coli", "desah", "bokep", "tobrut", "seksi", "sex", "sexy",
+            "memek", "kontol", "titit", "telanjang", "ngentod", "ngentot",
+            "ngewe", "ewe", "ewean", "puki"
+        ];
+        const customWords = db.data.chats[m.chat].antibadword?.text || [];
+        const forbiddenWords = [...new Set([...defaultWords, ...customWords.map(w => w.trim().toLowerCase())])];
+        const foundWords = forbiddenWords.filter(word => {
+            const regex = new RegExp(`\\b${word}\\b`, 'i');
+            return regex.test(budy);
+        });
+        if (foundWords.length > 0) {
+            let user = db.data.users[m.sender];
+            if (!user.badword) user.badword = 0;
+            user.badword += 1;
+            const maxBadword = 5;
+            if (user.badword >= maxBadword) return;
+            const remaining = maxBadword - user.badword;
+            const waktuDeteksi = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+            const daftarBadword = foundWords
+                .map((word, i) => `   ${i + 1}. ${word.replace(/[aeiou]/gi, '#')}`)
+                .join('\n');
+            const tindakan = (user.badword >= maxBadword && db.data.chats[m.chat].antibadword.kick)
+                ? 'Pesan dihapus & pengguna dikick!'
+                : 'Pesan dihapus!';
+            const replyText = `*💬 TERDETEKSI BADWORD*\n\n` +
+                `⏰ *Waktu Deteksi:* ${waktuDeteksi}\n` +
+                `👤 *Pengirim:* @${m.sender.split('@')[0]}\n` +
+                `💬 *Badword Terdeteksi:*\n${daftarBadword}\n` +
+                `📜 *Alasan Deteksi:*\n- Terdapat kata kotor dalam pesan\n\n` +
+                `-------------------------------\n` +
+                `⛔ *TINDAKAN:* ${tindakan}\n` +
+                `⚠️ Peringatan: ${user.badword}/${maxBadword} (tersisa ${remaining}x)`;
+            await m.reply(replyText, 'detectbadword');
+            if (user.badword >= maxBadword) {
+                await wbk.updateBlockStatus(m.sender, 'block');
+                user.badword = 0;
+                return m.reply(`🚫 Pengguna *${m.sender.split('@')[0]}* telah diblokir karena melanggar batas badword (${maxBadword}x).\n\nUntuk unblock, hubungi @${global.creator.split("@")[0]}`);
+                if (db.data.chats[m.chat].antibadword.kick === true) {
+                    await sleep(5000);
+                    await wbk.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
+                }
+            }
+            await wbk.sendMessage(m.chat, {
+                delete: {
+                    remoteJid: m.chat,
+                    fromMe: false,
+                    id: m.key.id,
+                    participant: m.key.participant
+                }
+            });
+        }
+    }
+    
+    if (m.isGroup && !m.key.fromMe && !isCreator && db.data.chats[m.chat].antilink?.check) {
+        const linkPatterns = [
+          /\bhttps?:\/\/[^\s/$.?#].[^\s]*/gi, // http:// atau https://
+          /\bwww\.[^\s]+\.[^\s]{2,}/gi,       // www.domain.ext
+          /\b[a-z0-9-]+\.(co\.id|go\.id|ac\.id|sch\.id|or\.id|id|my\.id|web\.id)\b/gi, // domain Indonesia
+          /\b[a-z0-9-]+\.(com|net|org|xyz|online|site|info|me|ly|gg)\b/gi              // domain lainnya
+        ];
+        let detectedLinks = linkPatterns.flatMap(pattern => budy.match(pattern) || []);
+        detectedLinks = detectedLinks.filter(link =>
+            !/tiktok\.com/i.test(link) && !/instagram\.com/i.test(link)
+        );
+        const containsLink = detectedLinks.length > 0;
+        if (containsLink) {
+            if (isAdmins || m.key.fromMe || isCreator) return;
+            const waktuDeteksi = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+            const daftarLink = detectedLinks
+                .map((link, i) => `   ${i + 1}. ${link.replace(/\./g, '*')}`)
+                .join('\n') || '-';
+            const tindakan = db.data.chats[m.chat].antilink.kick === true
+                ? 'Pesan dihapus & pengguna dikick!'
+                : 'Pesan dihapus!';
+            const replyText = `*🔗 TERDETEKSI LINK*\n\n` +
+                `⏰ *Waktu Deteksi:* ${waktuDeteksi}\n` +
+                `👤 *Pengirim:* @${m.sender.split('@')[0]}\n` +
+                `📎 *Link Terdeteksi:*\n${daftarLink}\n` +
+                `📜 *Alasan Deteksi:*\n` +
+                `- Terdapat link dalam pesan\n\n` +
+                `-------------------------------\n` +
+                `⛔ *TINDAKAN:* ${tindakan}`;
+            await m.reply(replyText, 'detectlink');
+            await wbk.sendMessage(m.chat, {
+                delete: {
+                    remoteJid: m.chat,
+                    fromMe: false,
+                    id: m.key.id,
+                    participant: m.key.participant
+                }
+            });
+            if (db.data.chats[m.chat].antilink.kick === true) {
+                await sleep(5000)
+                await wbk.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
+            }
+        }
+    }
+    
+    if (m.isGroup && !m.key.fromMe && !isCreator && db.data.chats[m.chat].antistatusmention?.check) {
+        if (m.mtype === 'groupStatusMentionMessage') {
+            const tindakan = db.data.chats[m.chat].antistatusmention.kick === true
+                ? 'Pesan dihapus & pengguna dikick!'
+                : 'Pesan dihapus!';
+            const waktuDeteksi = new Date().toLocaleString();
+            const replyText = `*🏷️ TERDETEKSI TAG MENTION*\n\n` +
+                `⏰ *Waktu Deteksi:* ${waktuDeteksi}\n` +
+                `👤 *Pengirim:* @${m.sender.split('@')[0]}\n` +
+                `📜 *Alasan Deteksi:*\n` +
+                `- Telah melakukan tag mention status\n\n` +
+                `-------------------------------\n` +
+                `⛔ *TINDAKAN:* ${tindakan}`;
+            await m.reply(replyText);
+            await wbk.sendMessage(m.chat, {
+                delete: {
+                    remoteJid: m.chat,
+                    fromMe: false,
+                    id: m.key.id,
+                    participant: m.key.participant
+                }
+            });
+            if (db.data.chats[m.chat].antistatusmention.kick === true) {
+                await sleep(5000)
+                await wbk.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
+            }
+        }
+    }
+    
+    if (m.isGroup && !m.key.fromMe && !isCreator && db.data.chats[m.chat].antibot?.check) {
+        const keyId = m.key?.id || "";
+        const waktuDeteksi = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+        const validLengths = [20, 22, 32];
+        const isLengthInvalid = !validLengths.includes(keyId.length);
+        const isFormatInvalid = /[^a-fA-F0-9]/.test(keyId);
+        const isPrefixBot = keyId.toUpperCase().startsWith("3EB0") || keyId.toUpperCase().startsWith("BAE5");
+        const isBotSuspect = isLengthInvalid || isFormatInvalid || isPrefixBot;
+        if (isBotSuspect) {
+            const alasanList = [];
+            if (isLengthInvalid) {
+                alasanList.push(`- Panjang ID tidak valid (dapat: ${keyId.length}, harus: ${validLengths.join(', ')})`);
+            }
+            if (isFormatInvalid) {
+                alasanList.push(`- Format Invalid: ID mengandung karakter non-heksadesimal`);
+            }
+            if (isPrefixBot) {
+                alasanList.push(`- Prefix Bot: ID diawali dengan prefix mencurigakan (${keyId.slice(0, 4)})`);
+            }
+            const tindakan = db.data.chats[m.chat].antibot.kick === true
+                ? 'Pesan dihapus & pengguna dikick!'
+                : 'Pesan dihapus!';
+            const alasan = alasanList.join('\n');
+            const replyText = `*🤖 DETEKSI BOT*\n\n` +
+                `⏰ *Waktu Deteksi:* ${waktuDeteksi}\n` +
+                `🤖 *Pengirim:* @${m.sender.split('@')[0]}\n` +
+                `🔑 *Key ID:* ${keyId}\n` +
+                `📏 *Jumlah Karakter ID:* ${keyId.length}\n` +
+                `🚨 *Terdeteksi Sebagai:* Bot\n` +
+                `📜 *Alasan Deteksi:*\n${alasan}\n\n` +
+                `-------------------------------\n` +
+                `⛔ *TINDAKAN:* ${tindakan}`;
+            await m.reply(replyText, 'detectbot');
+            await wbk.sendMessage(m.chat, {
+                delete: {
+                    remoteJid: m.chat,
+                    fromMe: false,
+                    id: m.key.id,
+                    participant: m.key.participant
+                }
+            });
+            if (db.data.chats[m.chat].antibot.kick === true) {
+                await sleep(5000);
+                await wbk.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
             }
         }
     }
@@ -663,38 +880,15 @@ try {
 //=========================================================
     
 //=========================================================
-// ============== SETTING BADWORD
-    if (db.data.settings[botNumber].badword && !m.isGroup && !m.key.fromMe && !isCreator) {
-        const forbiddenWords = [
-            "colmek", "coli", "desah", "bokep", "tobrut", "seksi", "sex", "sexy",
-            "memek", "kontol", "titit", "telanjang", "ngentod", "ngentot",
-            "ngewe", "ewe", "ewean", "puki"
-        ];
-        if (forbiddenWords.some(word => budy.toLowerCase().includes(word))) {
-            let user = db.data.users[m.sender];
-            if (!user.badword) user.badword = 0;
-            user.badword += 1;
-            const maxBadword = 5;
-            const remaining = maxBadword - user.badword;
-            if (user.badword >= maxBadword) {
-                await wbk.updateBlockStatus(m.sender, 'block');
-                return m.reply(`${litespace("TERDETEKSI BADWORD")}\n\n🚫 Kamu sudah melanggar batas penggunaan kata kasar sebanyak ${maxBadword} kali.\nMaaf ya, kamu telah diblokir\n> Unblock? @${global.creator.split("@")[0]}.`);
-            }
-            return m.reply(`${litespace("TERDETEKSI BADWORD")}\n\n🚫 Ups, kata tersebut dilarang digunakan pada bot ini ya, kak!\nMari ciptakan lingkungan yg positif dan nyaman. 😊\n\n⚠️ Peringatan: ${user.badword}/${maxBadword} (tersisa ${remaining} kali lagi sebelum diblokir!)`);
-        }
-    }
-//=========================================================
-    
-//=========================================================
     const { checkError, addError, addblockcmd, isCommandBlocked, Failed } = require('../lib/handler/error');
     const { pluginsLoader, pluginsLoaderFunc } = require('../lib/handler/loader');
     const plug = {
         m, wbk, isCreator, command, isCmd, newReply, text, quoted,
         args, prefix, pushname: m.pushName, mime, budy,
-        chats: db.data.chats[m.chat], users: db.data.users[m.sender],
-        isBan, isOwner: isCreator, isVip, isPremium, isGroup, isPrivate, mime, botNumber,
-        limit: db.data.users[m.sender].limit, proto, generateWAMessageContent,
-        reaction: m.react, db, generateWAMessageFromContent
+        chats: db.data.chats[m.chat], users: db.data.users[m.sender], 
+        isOwner: isCreator, isVip, isPremium, isGroup, isPrivate, mime, botNumber,
+        limit: db.data.users[m.sender].limit,
+        reaction: m.react, db
     };
     global.fail = (type, m = {}) => {
         const message = global.mess[type] || '⚠️ Akses ditolak!';
@@ -756,8 +950,8 @@ try {
         if (plugin.owner && !isCreator) { fail('owner', m); break; }
         if (plugin.premium && !isPremium) { fail('premium', m); break; }
         if (plugin.group && !m.isGroup) { fail('group', m); break; }
-        if (plugin.botAdmin && !m.isBotAdmin) { fail('botAdmin', m); break; }
-        if (plugin.admin && !m.isAdmin) { fail('admin', m); break; }
+        if (plugin.botAdmin && !isBotAdmins) { fail('botAdmin', m); break; }
+        if (plugin.admin && !isAdmins) { fail('admin', m); break; }
         if (plugin.private && m.isGroup) { fail('private', m); break; }
         if (plugin.nsfw && m.isGroup && !db.data.chats[m.chat]?.nsfw) { fail('nsfw', m); break; }
         if (plugin.rpg && !db.data.users[m.sender]?.rpg) { fail('rpg', m); break; }
@@ -769,9 +963,11 @@ try {
             }
         }
         const fullPluginPath = path.join('plugins', ...name.split('/'));
+        const isOfficialGroup = m.isGroup && m.chat === global.sosmed.idgcwa;
         try {
             await plugin.call(wbk, m, plug);
-            if (plugin.limit && !isCreator) {
+            if (plugin.limit && !isCreator && !isOfficialGroup) {
+            //if (plugin.limit && !isCreator) {
                 if (typeof db.data.users[m.sender].limit !== 'number') {
                     db.data.users[m.sender].limit = 0;
                 }
@@ -779,7 +975,7 @@ try {
 
                 if (db.data.users[m.sender].limit <= 0) {
                     m.reply(global.mess.limit);
-                } else if (db.data.users[m.sender].limit < 10) {
+                } else if (db.data.users[m.sender].limit < 5) {
                     m.reply(`⚠️ Sisa limit kamu tinggal ${db.data.users[m.sender].limit}. Gunakan dengan bijak ya!`);
                 }
             }
@@ -787,9 +983,9 @@ try {
             const e = util.format(err);
             console.error(`[PLUGIN ERROR] ${plugin.command} | ${fullPluginPath}`);
             if (isCommandBlocked(command, fullPluginPath)) {
-                return m.reply("⚠️ Command telah di *block* karena error dalam 3x percobaan.", true);
+                return m.reply(`⚠️ *Fitur ${command}* telah di *block* karena error.\n> Owner akan melakukan perbaikan pada fitur tersebut.`, 'error');
             }
-            m.reply(`Y-ya ampun... error lagi... 😔${readmore} Udah aku laporin ke owner kok... Jadi tunggu aja... Tapi jangan manja terus gini dong!\n${readmore}\n\`\`\`${e}\`\`\``, true);
+            m.reply(`Y-ya ampun... error lagi... 😔${readmore} Udah aku laporin ke owner kok... Jadi tunggu aja... Tapi jangan manja terus gini dong!\n${readmore}\n\`\`\`${e}\`\`\``, 'error');
             if (isCmd) await Failed(command, fullPluginPath, err.message || e, m, wbk);
             addError(err.message, command, fullPluginPath, m.sender, m.isGroup ? 'group chat' : 'private chat', 'error');
             if (autoblockcmd) {
@@ -804,7 +1000,6 @@ try {
                 }
             }
         }
-
         break;
     }
 //=========================================================
@@ -813,8 +1008,12 @@ try {
 switch (command) {
 //=========================================================
 
-
-case 'self': {
+case "unreg": {
+    db.data.users[m.sender].register = false
+}
+break;
+        
+case "self": {
     // Kategori: "owner"
     if (!isCreator) return m.reply(global.mess.owner);
     wbk.public = false;
@@ -822,7 +1021,7 @@ case 'self': {
 }
 break;
 
-case 'public': {
+case "public": {
     // Kategori: "owner"
     if (!isCreator) return m.reply(global.mess.owner);
     wbk.public = true;
@@ -830,17 +1029,80 @@ case 'public': {
 }
 break;
         
+case "owner": {
+    // Kategori: "main"
+    const contacts = { 
+        contacts: { 
+            displayName: global.ownerName, 
+            contacts: [{
+                displayName: "WBK",
+                vcard: `BEGIN:VCARD
+VERSION:3.0
+FN:${global.ownerName}
+N:${global.ownerName}
+TEL;type=Telepon;waid=${global.ownerNumber}:${global.ownerNumber}
+X-WA-BIZ-DESCRIPTION:${global.desc}
+X-WA-BIZ-NAME:${global.ownerName}
+END:VCARD`
+            }] 
+        }
+    };
+    await m.reply(contacts, null, true);
+}
+break;
+        
+case 'request': {
+    // Kategori: "main"
+	if (!text) return newReply(`Contoh: ${prefix + command} halo kak, aku mau request fitur download music`);
+	textt = `*| REQUEST |*`;
+	teks1 = `\n\n*User* : @${m.sender.split("@")[0]}\n*Request* : ${text}`;
+	teks2 = `\n\n*Hii ${pushname}, permintaan kamu sudah dikirim ke pemilik aku, tunggu sebentar ya...*`;
+	wbk.sendMessage(global.creator, {
+		text: textt + teks1,
+		mentions: [m.sender],
+	}, { quoted: m });
+	m.reply({
+		text: textt + teks2 + teks1
+	});
+}
+db.data.settings[botNumber].totalhit += 1;
+break;
+        
+case 'join': {
+    if (!text) return newReply(`Kirim perintah ${prefix + command} _link group_`);
+	let teks = `「 *JOIN GROUP* 」\n\n${text}\n`;
+    let link = text;
+    const button = [{
+        name: "cta_url",
+        buttonParamsJson: `{
+        	"display_text": "Join Group",
+        	"url": "${link}",
+        	"merchant_url": "${link}"
+		}`,
+    }];
+    let image = global.image.avatar;
+    sendButtonImage(wbk, m.chat, image, button, teks, global.footer, m);  
+}
+break;
+        
+
+        
         
 //=========================================================
 default:
 //=========================================================
-        
-if (['bot', 'permisi', 'kak', 'test', 'tes'].some(keyword => budy.startsWith(keyword))) {
-    try {
-        newReplyBot("Online, Siap Membantu🤖\n🤖Runtime: " + runtime(process.uptime()))
-    } catch (e) {
-        newReplyBot(e)
-    }
+if (budy.startsWith('+>')) {
+	if (!isCreator) return m.react('⚠️');
+	if (isBot) return m.react('⚠️');
+	try {
+		await m.react('⏱️');
+		let evaled = await eval(budy.slice(2))
+		if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
+		m.react('✅');
+		await newReply(evaled)
+	} catch (err) {
+		await newReply(String(err))
+	}
 };
 
 if (budy.startsWith('=>')) {
@@ -863,28 +1125,14 @@ if (budy.startsWith('=>')) {
 	}
 };
 
-if (budy.startsWith('>')) {
-	if (!isCreator) return m.react('⚠️');
-	if (isBot) return m.react('⚠️');
-	try {
-		await m.react('⏱️');
-		let evaled = await eval(budy.slice(2))
-		if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
-		m.react('✅');
-		await newReply(evaled)
-	} catch (err) {
-		await newReply(String(err))
-	}
-};
-
 if (budy.startsWith('$')) {
 	if (!isCreator) return m.react('⚠️');
 	if (isBot) return m.react('⚠️');
 	await m.react('⏱️');
 	exec(budy.slice(2), (err, stdout) => {
 		m.react('✅');
-		if (err) return newReply(err)
-		if (stdout) return newReply(stdout)
+		if (err) return m.reply(err)
+		if (stdout) return m.reply(stdout)
 	})
 };    
 

@@ -3,51 +3,6 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const { sleep, litespace } = require('../../../utils/myfunc')
 
-let nakano = async (m, { wbk, text, prefix, command, isGroup }) => {
-	if (!text) return m.reply(`⚠️ Hmm... kakak belum kasih link nih! 🫣 Coba ketik kayak gini ya: ${prefix + command} https://instagram.com/xxxxxxx/`);
-    if (!text.includes('instagram.com')) return m.reply(`Link Invalid!!`);
-    await m.react('🔽');
-    let result = await instagram(text);
-    console.log(result)
-    if (result.msg) return m.reply(result.msg);
-    let item = 0;
-    if (result.url.length === 0) {
-        await m.reply(`❌ Tidak ada konten yang ditemukan di URL tersebut. Pastikan tautannya benar, ya Kak!`);
-    }
-    for (let url of result.url) {
-        if (result.metadata.isVideo) {
-            await wbk.sendMessage(m.chat, {
-                video: { url: url },
-                caption: `🎥 *Instagram Video*\n🔗 Link Asli(${text})`,
-            });
-            await m.react('✅');
-        } else {
-            if (item === 0) {
-                await wbk.sendMessage(m.chat, {
-                    image: { url: url },
-                    caption: `🖼️ *Instagram Photo*\n🔗 Link Asli(${text})\n\n${m.isGroup ? '_📥 Sisa foto akan dikirim di private chat_' : ''}`,
-                });
-                await m.react(m.isGroup ? '✅' : '🔽');
-            } else {
-                await wbk.sendMessage(m.sender, {
-                    image: { url: url },
-                });
-                await m.react('✅');
-            }
-            item += 1;
-            await sleep(2000);
-        }
-    }
-    await m.react('✅');
-}
-
-nakano.help = ['instagram'];
-nakano.tags = ['downloader'];
-nakano.command = ['ig', 'igdl', 'igfoto', 'igphoto', 'igslide', 'igstory', 'igtv', 'igvideo', 'igreels', 'instagram', 'instagramdl', 'instafoto', 'instaphoto', 'instareel', 'instareels', 'instastory', 'instatv', 'instavid', 'instavideo']
-nakano.limit = true;
-
-module.exports = nakano;
-
 const getDownloadLinks = (url) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -305,3 +260,58 @@ async function instagram(url) {
     }
     return result;
 }
+
+let nakano = async (m, { wbk, text, prefix, command }) => {
+	if (!text) return m.reply(`⚠️ Hmm... kakak belum kasih link nih! 🫣 Coba ketik kayak gini ya: ${prefix + command} https://instagram.com/xxxxxxx/`);
+    if (!text.includes('instagram.com')) return m.reply(`Link Invalid!!`);
+    
+    await m.react('🔽');
+    
+    let result = await instagram(text);
+    console.log(result)
+    if (result.msg) return m.reply(result.msg);
+    if (!result.url || result.url.length === 0) {
+        return m.reply(`❌ Tidak ada konten yang ditemukan di URL tersebut. Pastikan tautannya benar, ya Kak!`);
+    }
+
+    const { metadata, url } = result;
+    const caption = `📸  ${litespace("Instagram Post")}\n\n👤 *@${metadata.username}*\n👤 _https://instagram.com/${metadata.username}_\n❤️ ${metadata.like} | 💬 ${metadata.comment}\n🔗 ${text}\n📝 ${metadata.caption || 'Tidak ada caption'}`;
+    if (metadata.isVideo) {
+        for (const videoUrl of url) {
+            await m.reply({
+                video: { url: videoUrl },
+                caption: caption,
+            });
+            await m.react('✅');
+            await sleep(1000);
+        }
+    } else {
+        for (let i = 0; i < url.length; i++) {
+            const imageUrl = url[i];
+            const isFirst = i === 0;
+            const isLast = i === url.length - 1;
+            const target = isFirst ? m.chat : m.sender;
+
+            let currentCaption = undefined;
+            if (isFirst) {
+                currentCaption = `${caption}${m.isGroup && url.length > 1 ? '\n\n📥 Sisa foto dikirim ke private chat.' : ''}`;
+            } else if (isLast) {
+                currentCaption = '*✅ Semua image telah berhasil dikirim.*';
+            }
+
+            await wbk.sendMessage(target, {
+                image: { url: imageUrl },
+        		...(currentCaption && { caption: currentCaption })
+            }, { quoted: m });
+            await m.react('✅');
+            await sleep(2000);
+        }
+    }
+}
+
+nakano.help = ['instagram'];
+nakano.tags = ['downloader'];
+nakano.command = ['ig', 'igdl', 'igfoto', 'igphoto', 'igslide', 'igstory', 'igtv', 'igvideo', 'igreels', 'instagram', 'instagramdl', 'instafoto', 'instaphoto', 'instareel', 'instareels', 'instastory', 'instatv', 'instavid', 'instavideo']
+nakano.limit = true;
+
+module.exports = nakano;

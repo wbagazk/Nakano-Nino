@@ -7,7 +7,10 @@ let nakano = async (m, { args, prefix, command }) => {
     if (!item || isNaN(amount)) {
         return m.reply(`Ih! Formatnya salah tau!! 😤 Coba dicek baik-baik deh!
 
-Contoh yang bener tuh: *${prefix + command} limit 10*
+Yang bener tuh *${prefix + command} limit (limit yg mau ditukar)*
+Contoh: *${prefix + command} limit 5*
+
+
 1 Limit harganya 2000 Point, jangan sok lupa ya! 🙄`);
     }
 
@@ -26,15 +29,17 @@ Kamu beli ${amount} Limit dengan harga ${totalCost} Point tuh... inget ya!
 Jangan buang-buang point sembarangan! Aku gak bakal bantuin lagi kalau habis! 🙄`);
         } else {
             m.reply(`❌ U-uhm... kayaknya point kamu belum cukup deh... 😣
-Butuh ${totalCost} Point buat beli ${amount} Limit.
-💰 Point kamu sekarang cuma: ${user.point}...
+
+Butuh *${totalCost}* Point buat beli ${amount} Limit.
+💰 Point kamu sekarang cuma *${user.point}*
 
 Yuk semangat nabung point dulu yaa~ aku percaya kamu bisa kok! ✨`);
         }
     } else {
         m.reply(`❌ E-eh... item itu nggak ada ya... 😣
+
 Yang bisa kamu beli sekarang cuma *limit* kok~
-Coba deh pake: *${prefix + command} limit 10*
+Coba deh pake: *${prefix + command} limit 5*
 
 Jangan sedih ya... nanti item lainnya aku bantu tambahin~ 😳✨`);
     }
