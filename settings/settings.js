@@ -16,9 +16,9 @@ const chalk = require('chalk');
 global.botName = 'Nakano Nino';
 global.desc = '~Anata no koto o motto shiritai…';
 global.ownerName = 'WBK';
-global.ownerNumber = '6285183134846';
-global.botNumber = '6285117114846@s.whatsapp.net'
-global.creator = '6285183134846@s.whatsapp.net';
+global.ownerNumber = '0';
+global.botNumber = '0@s.whatsapp.net'
+global.creator = '0@s.whatsapp.net';
 global.location = '11 Naitōmachi, Shinjuku City, Tokyo 160-0014, Jepang';
 global.packname = '';
 global.author = 'Nakano Nino - 覚悟しなさいよ！\n~ Kakugo shinasai yo!\n\n\n©WBK';
@@ -28,7 +28,7 @@ global.footer = 'Nakano Nino - 覚悟しなさいよ！';
 
 //=========================================================
 // PREFIX, DB, DLL
-global.idgcbackup = '120363410701967881@g.us'; // untuk backup otomatis
+global.idgcbackup = '0@g.us'; // untuk backup otomatis
 global.prefa = '#', '.', '!';
 global.databaseName = 'nakano-db.json';
 global.sessionName = 'nakano-sesi';
@@ -37,28 +37,18 @@ global.autoblockcmd = true
 global.public = true;
 //=========================================================
 
-//=========================================================
-// ATUR SENDIRI WAKTU & TRUE/FALSE
-global.autobackup = true;
-global.intervalautobackup = 2 * 60 * 60 * 1000; // artinya 2 jam sekali
-global.autoclearsession = false;
-global.intervalautoclearsession = 5 * 60 * 60 * 1000;
-global.autocleartemp = true;
-global.intervalautocleartemp = 3 * 60 * 60 * 1000;
-//=========================================================
-
 // ========================================================
 global.sosmed = {
-    email: "wbagazk@gmail.com",
+    email: "0@gmail.com",
     yt: "",
     ig: "",
     tt: "",
     gh: "https://github.com/wbagazk",
     website: "https://wbagazk.my.id",
-    gcwa: "https://chat.whatsapp.com/L7MxIu1273d7fCl1p8Gbhk",
-    chwa: "https://whatsapp.com/channel/0029Vaxp0W0CXC3RhmaRUt2b",
-    idgcwa: "6281938781378-1613534871@g.us",
-    idchwa: "120363369378768979@newsletter",
+    gcwa: "https://chat.whatsapp.com/",
+    chwa: "https://whatsapp.com/channel/",
+    idgcwa: "0@g.us",
+    idchwa: "0@newsletter",
 };
 // ========================================================
 
@@ -137,20 +127,20 @@ global.mess = {
 //=========================================================
 // SETTING GITHUB CDN
 global.githubCDN = {
-    user: "IyaaTauKamuPro", // Ganti dengan username GitHub
-    repo: "cdn", // Ganti dengan nama repositori
-    token: "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" // Ganti dengan token, ambil di > https://github.com/settings/tokens/new
+    user: "0", // Ganti dengan username GitHub
+    repo: "0", // Ganti dengan nama repositori
+    token: "0" // Ganti dengan token, ambil di > https://github.com/settings/tokens/new
 }
 //=========================================================
 
 //=========================================================
 // SETTING ORDER KUOTA >>> CEK OKECONNECT
 global.orderkuota = {
-    merchant: "OK388034",
-    member: "OK388034",
-    pin: "8494",
-    password: "bagas160803",
-    apikey: "78158691734266400388034OKCTE76864479794F4D03852E967B0E84211",
+    merchant: "0",
+    member: "0",
+    pin: "0",
+    password: "0",
+    apikey: "0",
     qrcode: "00020101021226670016COM.NOBUBANK.WWW01189360050300000879140214459472381924500303UMI51440014ID.CO.QRIS.WWW0215ID20222129272240303UMI520448145303360540115802ID5914BAGAZ STORE ID6006JEMBER61056811162070703A0163049B3E"
 }
 //=========================================================
@@ -158,11 +148,11 @@ global.orderkuota = {
 //=========================================================
 // SETTING ALL APIKEY
 global.apikey = {
-    atlantic: "a9hhabZO0mxXRBWRNZm3B9qZtaRN1yKwPH5DMzkoQTXmzxSIeIGe9JI5M5C8nhwTPZflXLIqJKIPJi3D8Gupdjpjz0i8gAhbgRaj",
-    groqapi: "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",
-    openaiapi: "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",
-    geminiapi: "AIzaSyCPUPUKIselvwuqo8x09O_OCuqcsbPuWik",
-    mistral: "g59Th8VvkAmp8N8mdCVfZmHUSmojpuD6"
+    atlantic: "0",
+    groqapi: "0",
+    openaiapi: "0",
+    geminiapi: "0",
+    mistral: "0"
 };
 //=========================================================
 
